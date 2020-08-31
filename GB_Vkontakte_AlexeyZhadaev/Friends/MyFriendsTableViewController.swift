@@ -65,9 +65,19 @@ class MyFriendsTableViewController: UITableViewController {
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return friendSection[section]
+//    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//        return friendSection[section]
+//    }
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView(frame: CGRect())
+        headerView.backgroundColor = .init(white: 0.9, alpha: 0.4)
+        let label = UILabel(frame: CGRect(x: 15, y: 6, width: 50, height: 15))
+        label.text = friendSection[section]
+        headerView.addSubview(label)
+        return headerView
     }
+
     
     override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
         return friendSection
