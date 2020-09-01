@@ -9,19 +9,44 @@
 import UIKit
 
 class NewsTableViewCell: UITableViewCell {
-
-    @IBOutlet var newsLabelDidPressed: UILabel!
     
+    
+    @IBOutlet weak var newsLabel: UILabel!
+    @IBOutlet weak var authorAvatar: UIImageView!
+    @IBOutlet weak var newsAuthor: UILabel!
+    @IBOutlet weak var newsImage: UIImageView!
+    @IBOutlet weak var newsLikeCount: UILabel!
+    @IBOutlet weak var buttonImage: UIButton!
+    
+    var count = 0
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
-
+    
+    @IBAction func likeButtonDidPressed(_ sender: Any) {
+        if count == 0 {
+            count = count + 1
+            buttonImage.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+            buttonImage.tintColor = UIColor.systemRed
+            newsLikeCount.textColor = UIColor.systemRed
+        } else { count = count - 1
+            buttonImage.setImage(UIImage(systemName: "heart"), for: .normal)
+            buttonImage.tintColor = UIColor.systemBlue
+            newsLikeCount.textColor = UIColor.systemBlue
+        }
+        newsLikeCount.text = "\(count)"
+    }
+    
+    
+    @IBAction func commentButtonDidPressed(_ sender: Any) {
+    }
+    
+    @IBAction func shareButtonDidPressed(_ sender: Any) {
+    }
+    
 }
