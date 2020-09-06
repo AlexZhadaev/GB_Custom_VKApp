@@ -15,12 +15,11 @@ class MyFriendsTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
     }
-
+    
     func configure(for model: Friend) {
         friendName.text = model.name
         customAvatarView.avatarImage.image = UIImage.init(named: model.friendPhoto)

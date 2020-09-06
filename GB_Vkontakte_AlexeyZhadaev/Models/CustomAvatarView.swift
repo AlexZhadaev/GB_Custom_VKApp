@@ -13,24 +13,6 @@ import UIKit
     @IBOutlet weak var avatarImage: UIImageView!
     @IBOutlet weak var avatarShadow: UIView!
     
-//    @IBInspectable var shadowColor: UIColor = UIColor.purple {
-//        didSet {
-//            setNeedsDisplay()
-//        }
-//    }
-//
-//    @IBInspectable var shadowOpacity: Float = 0.4 {
-//        didSet {
-//            setNeedsDisplay()
-//        }
-//    }
-//
-//    @IBInspectable var shadowRadius: CGFloat = 3 {
-//        didSet {
-//            setNeedsDisplay()
-//        }
-//    }
-    
     func configure() {
         avatarImage.layer.cornerRadius = avatarImage.frame.size.height/2
         avatarImage.setNeedsDisplay()
@@ -44,6 +26,20 @@ import UIKit
         avatarShadow.layer.cornerRadius = avatarShadow.frame.size.height/2
         avatarShadow.setNeedsDisplay()
         
+    }
+    
+      // MARK: - animations
+        func animateAvatar() {
+        let animation = CASpringAnimation(keyPath: "transform.scale")
+        animation.fromValue = 0
+        animation.toValue = 1
+        animation.stiffness = 200
+        animation.mass = 2
+        animation.duration = 2
+        animation.beginTime = CACurrentMediaTime() + 1
+        animation.fillMode = CAMediaTimingFillMode.backwards
+        
+        self.avatarImage.layer.add(animation, forKey: nil)
     }
 }
 

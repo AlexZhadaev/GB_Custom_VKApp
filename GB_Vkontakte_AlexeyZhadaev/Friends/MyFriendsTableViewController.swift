@@ -19,7 +19,7 @@ class MyFriendsTableViewController: UITableViewController {
         super.viewDidLoad()
         generateFriends()
         sortFriends()
-
+        
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Поиск"
@@ -35,24 +35,24 @@ class MyFriendsTableViewController: UITableViewController {
     }
     
     var isFiltering: Bool {
-      let searchBarScopeIsFiltering =
-        searchController.searchBar.selectedScopeButtonIndex != 0
-      return searchController.isActive &&
-        (!isSearchBarEmpty || searchBarScopeIsFiltering)
+        let searchBarScopeIsFiltering =
+            searchController.searchBar.selectedScopeButtonIndex != 0
+        return searchController.isActive &&
+            (!isSearchBarEmpty || searchBarScopeIsFiltering)
     }
     
     private func generateFriends() {
-        let friend1 = Friend(name: "Гарольд Скрывающий Боль", friendPhoto: "avatarHarold", friendGallery: ["harold1"])
-        let friend2 = Friend(name: "Александр Невский", friendPhoto: "avatarNevsky", friendGallery: ["nevsky1"])
-        let friend3 = Friend(name: "Малыш Йода", friendPhoto: "avatarYoda", friendGallery: ["yoda1"])
-        let friend4 = Friend(name: "Александр Пистолетов", friendPhoto: "noAvatar", friendGallery: ["nevsky1"])
-        let friend5 = Friend(name: "Гейб Ньюэлл", friendPhoto: "noAvatar", friendGallery: ["nevsky1"])
-        let friend6 = Friend(name: "Марк Дакаскос", friendPhoto: "noAvatar", friendGallery: ["nevsky1"])
-        let friend7 = Friend(name: "Сарик Андреасян", friendPhoto: "noAvatar", friendGallery: ["nevsky1"])
-        let friend8 = Friend(name: "Оливье Грюнер", friendPhoto: "noAvatar", friendGallery: ["nevsky1"])
-        let friend9 = Friend(name: "Каспер Ван Дин", friendPhoto: "noAvatar", friendGallery: ["nevsky1"])
-        let friend10 = Friend(name: "Дон Уилсон", friendPhoto: "noAvatar", friendGallery: ["nevsky1"])
-        let friend11 = Friend(name: "Маттиас Хьюз", friendPhoto: "noAvatar", friendGallery: ["nevsky1"])
+        let friend1 = Friend(name: "Гарольд Скрывающий Боль", friendPhoto: "avatarHarold", friendGallery: ["avatarHarold","noAvatar"])
+        let friend2 = Friend(name: "Александр Невский", friendPhoto: "avatarNevsky", friendGallery: ["nevsky1", "nevsky2", "nevsky3", "nevsky4", "nevsky5"])
+        let friend3 = Friend(name: "Малыш Йода", friendPhoto: "avatarYoda", friendGallery: ["noAvatar", "noAvatar"])
+        let friend4 = Friend(name: "Александр Пистолетов", friendPhoto: "noAvatar", friendGallery: ["noAvatar", "noAvatar"])
+        let friend5 = Friend(name: "Гейб Ньюэлл", friendPhoto: "noAvatar", friendGallery: ["noAvatar", "noAvatar"])
+        let friend6 = Friend(name: "Марк Дакаскос", friendPhoto: "noAvatar", friendGallery: ["noAvatar", "noAvatar"])
+        let friend7 = Friend(name: "Сарик Андреасян", friendPhoto: "noAvatar", friendGallery: ["noAvatar", "noAvatar"])
+        let friend8 = Friend(name: "Оливье Грюнер", friendPhoto: "noAvatar", friendGallery: ["noAvatar", "noAvatar"])
+        let friend9 = Friend(name: "Каспер Ван Дин", friendPhoto: "noAvatar", friendGallery: ["noAvatar", "noAvatar"])
+        let friend10 = Friend(name: "Дон Уилсон", friendPhoto: "noAvatar", friendGallery: ["noAvatar", "noAvatar"])
+        let friend11 = Friend(name: "Маттиас Хьюз", friendPhoto: "noAvatar", friendGallery: ["noAvatar", "noAvatar"])
         friends.append(friend1)
         friends.append(friend2)
         friends.append(friend3)
@@ -103,11 +103,11 @@ class MyFriendsTableViewController: UITableViewController {
             let friend = filteredFriends[indexPath.row]
             cell.configure(for: filteredFriends[indexPath.row])
         } else {
-        let friendKey = friendSection[indexPath.section]
-        if let friend = friendDictionary[friendKey] {
-            cell.configure(for: friend[indexPath.row])
+            let friendKey = friendSection[indexPath.section]
+            if let friend = friendDictionary[friendKey] {
+                cell.configure(for: friend[indexPath.row])
+            }
         }
-    }
         return cell
     }
     
@@ -128,7 +128,17 @@ class MyFriendsTableViewController: UITableViewController {
     override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
         return friendSection
     }
+  // MARK: - TableView delegate
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let whichIsSelected = indexPath.row
+        let selectedFriend = friends[whichIsSelected]
+        let friendPhotoController = storyboard?.instantiateViewController(identifier: "PhotoGalleryStoryboardKey") as! FriendPhotoCollectionViewController
+        friendPhotoController.friend = selectedFriend
+        self.show(friendPhotoController, sender: nil)
+    }
+    
+    // MARK: - Search
     func filterContentForSearchText(_ searchText: String) {
         filteredFriends = friends.filter { (friend: Friend) -> Bool in
             
@@ -146,15 +156,15 @@ class MyFriendsTableViewController: UITableViewController {
 }
 
 extension MyFriendsTableViewController: UISearchResultsUpdating {
-  func updateSearchResults(for searchController: UISearchController) {
-    let searchBar = searchController.searchBar
-    filterContentForSearchText(searchBar.text!)
-  }
+    func updateSearchResults(for searchController: UISearchController) {
+        let searchBar = searchController.searchBar
+        filterContentForSearchText(searchBar.text!)
+    }
 }
 
 extension MyFriendsTableViewController: UISearchBarDelegate {
-  func searchBar(_ searchBar: UISearchBar,
-      selectedScopeButtonIndexDidChange selectedScope: Int) {
-    filterContentForSearchText(searchBar.text!)
-  }
+    func searchBar(_ searchBar: UISearchBar,
+                   selectedScopeButtonIndexDidChange selectedScope: Int) {
+        filterContentForSearchText(searchBar.text!)
+    }
 }
