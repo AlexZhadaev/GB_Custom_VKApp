@@ -25,4 +25,5 @@ class MyFriendsTableViewCell: UITableViewCell {
         customAvatarView.avatarImage.image = UIImage.init(named: model.friendPhoto)
         customAvatarView.configure()
     }
+
 }

@@ -79,6 +79,16 @@
                                             <segue destination="lp6-35-bEz" kind="presentation" modalPresentationStyle="fullScreen" id="IE0-UE-IPe"/>
                                         </connections>
                                     </button>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Axc-si-XgP" customClass="LoadingDots" customModule="GB_Vkontakte_AlexeyZhadaev" customModuleProvider="target">
+                                        <rect key="frame" x="167" y="451" width="80" height="20"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="colorOfDots">
+                                                <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="hjd-fx-Saz" firstAttribute="top" secondItem="0wI-H4-IYm" secondAttribute="bottom" constant="111" id="0ol-9e-Glu"/>
@@ -117,6 +127,7 @@
                         </userDefinedRuntimeAttributes>
                     </view>
                     <connections>
+                        <outlet property="loadingDots" destination="Axc-si-XgP" id="oTy-kA-R0v"/>
                         <outlet property="loginButton" destination="A6N-qp-qsb" id="f3y-iJ-t92"/>
                         <outlet property="loginInput" destination="1fq-Ql-H8P" id="Cih-U7-LP3"/>
                         <outlet property="loginTitleView" destination="hjd-fx-Saz" id="N7T-cg-wcP"/>
@@ -128,7 +139,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-629" y="79"/>
+            <point key="canvasLocation" x="-630.43478260869574" y="78.348214285714278"/>
         </scene>
         <!--Группы-->
         <scene sceneID="7kZ-VV-cnw">

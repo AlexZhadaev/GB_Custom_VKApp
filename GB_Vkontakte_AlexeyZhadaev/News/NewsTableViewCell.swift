@@ -63,12 +63,11 @@ class NewsTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollection
     }
     
     @IBAction func likeButtonDidPressed(_ sender: Any) {
-        if count == 0 {
-            count = count + 1
+        if count == 0 { UIView.transition(with: newsLikeCount, duration: 0.75, options: .transitionFlipFromTop, animations: {self.count = self.count + 1})
             buttonImage.setImage(UIImage(systemName: "heart.fill"), for: .normal)
             buttonImage.tintColor = UIColor.systemRed
             newsLikeCount.textColor = UIColor.systemRed
-        } else { count = count - 1
+        } else { UIView.transition(with: newsLikeCount, duration: 0.75, options: .transitionFlipFromBottom, animations: {self.count = self.count - 1})
             buttonImage.setImage(UIImage(systemName: "heart"), for: .normal)
             buttonImage.tintColor = UIColor.systemBlue
             newsLikeCount.textColor = UIColor.systemBlue

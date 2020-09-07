@@ -20,6 +20,10 @@ class MyFriendsTableViewController: UITableViewController {
         generateFriends()
         sortFriends()
         
+        let tapGesture = UITapGestureRecognizer()
+        self.view.addGestureRecognizer(tapGesture)
+        tapGesture.addTarget(self, action: #selector(taptap))
+        
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Поиск"
@@ -111,10 +115,6 @@ class MyFriendsTableViewController: UITableViewController {
         return cell
     }
     
-    //    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-    //        return friendSection[section]
-    //    }
-    
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView(frame: CGRect())
         headerView.backgroundColor = .init(white: 0.9, alpha: 0.4)
@@ -128,7 +128,7 @@ class MyFriendsTableViewController: UITableViewController {
     override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
         return friendSection
     }
-  // MARK: - TableView delegate
+    // MARK: - TableView delegate
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let whichIsSelected = indexPath.row
@@ -152,8 +152,27 @@ class MyFriendsTableViewController: UITableViewController {
         
         tableView.reloadData()
     }
-    
+    //MARK:- Gestures
+    @objc func taptap(recognizer: UITapGestureRecognizer) {
+        if recognizer.state == UIGestureRecognizer.State.ended {
+            let tapLocation = recognizer.location(in: self.tableView)
+            if let tapIndexPath = self.tableView.indexPathForRow(at: tapLocation) {
+                if let tappedCell = self.tableView.cellForRow(at: tapIndexPath) as? MyFriendsTableViewCell {
+                    let animation = CASpringAnimation(keyPath: "transform.scale")
+                    animation.fromValue = 0.6
+                    animation.toValue = 1
+                    animation.stiffness = 200
+                    animation.mass = 2
+                    animation.duration = 0.8
+                    tappedCell.customAvatarView.layer.add(animation, forKey: nil)
+                    
+                }
+            }
+        }
+    }
 }
+
+//MARK:- Extensions
 
 extension MyFriendsTableViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {

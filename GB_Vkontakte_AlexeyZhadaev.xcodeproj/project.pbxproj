@@ -15,6 +15,7 @@
 		350B467824DC739D00910FCE /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350B467724DC739D00910FCE /* Group.swift */; };
 		350B467A24DC74AC00910FCE /* MyFriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350B467924DC74AC00910FCE /* MyFriendsTableViewController.swift */; };
 		350B467C24DC74C200910FCE /* MyFriendsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350B467B24DC74C200910FCE /* MyFriendsTableViewCell.swift */; };
+		3533F2072506BDEE001975AB /* LoadingDots.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3533F2062506BDEE001975AB /* LoadingDots.swift */; };
 		3554667724F6DAE700EAA7F4 /* CustomAvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3554667624F6DAE700EAA7F4 /* CustomAvatarView.swift */; };
 		3556A65524F3E98900BF6847 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3556A65424F3E98900BF6847 /* GradientView.swift */; };
 		356F8B8E24DB4F4E001C89BA /* FindGroupsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356F8B8D24DB4F4D001C89BA /* FindGroupsTableViewController.swift */; };
@@ -43,6 +44,7 @@
 		350B467724DC739D00910FCE /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		350B467924DC74AC00910FCE /* MyFriendsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFriendsTableViewController.swift; sourceTree = "<group>"; };
 		350B467B24DC74C200910FCE /* MyFriendsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFriendsTableViewCell.swift; sourceTree = "<group>"; };
+		3533F2062506BDEE001975AB /* LoadingDots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingDots.swift; sourceTree = "<group>"; };
 		3554667624F6DAE700EAA7F4 /* CustomAvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAvatarView.swift; sourceTree = "<group>"; };
 		3556A65424F3E98900BF6847 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		356F8B8D24DB4F4D001C89BA /* FindGroupsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindGroupsTableViewController.swift; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 				3556A65424F3E98900BF6847 /* GradientView.swift */,
 				3554667624F6DAE700EAA7F4 /* CustomAvatarView.swift */,
 				35C1BB7124F8246300A7ACBC /* LikeCustomControlUIView.swift */,
+				3533F2062506BDEE001975AB /* LoadingDots.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -240,6 +243,7 @@
 				35F278A624D717D200635114 /* TabbarViewController.swift in Sources */,
 				350B467324DC6F1D00910FCE /* FriendPhotoCollectionViewCell.swift in Sources */,
 				3556A65524F3E98900BF6847 /* GradientView.swift in Sources */,
+				3533F2072506BDEE001975AB /* LoadingDots.swift in Sources */,
 				35A3BAF424D20B5000933891 /* LoginFormController.swift in Sources */,
 				350B467824DC739D00910FCE /* Group.swift in Sources */,
 				350B466D24DC60FE00910FCE /* MyGroupsTableViewController.swift in Sources */,

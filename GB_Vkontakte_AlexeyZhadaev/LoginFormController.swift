@@ -17,6 +17,7 @@ class LoginFormController: UIViewController {
     @IBOutlet weak var loginTitleView: UILabel!
     @IBOutlet weak var passwordTitleView: UILabel!
     @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var loadingDots: LoadingDots!
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -61,7 +62,7 @@ class LoginFormController: UIViewController {
     @IBAction func loginButtonPressed(_ sender: Any) {
         let login = loginInput.text!
         let password = passwordInput.text!
-        
+        loadingDots.colorOfDots = .white
         if login == "geek" && password == "brains" {
             print("успешная авторизация")
         } else {
@@ -116,9 +117,9 @@ class LoginFormController: UIViewController {
                        delay: 1,
                        options: .curveEaseOut,
                        animations: {
-                           self.loginTitleView.transform = .identity
-                           self.passwordTitleView.transform = .identity
-                       },
+                        self.loginTitleView.transform = .identity
+                        self.passwordTitleView.transform = .identity
+        },
                        completion: nil)
     }
     
@@ -132,8 +133,8 @@ class LoginFormController: UIViewController {
                        initialSpringVelocity: 0,
                        options: .curveEaseOut,
                        animations: {
-                           self.titleView.transform = .identity
-                       },
+                        self.titleView.transform = .identity
+        },
                        completion: nil)
     }
     
