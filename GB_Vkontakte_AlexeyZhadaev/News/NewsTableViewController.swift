@@ -12,12 +12,14 @@ class NewsTableViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
-    var news = ["BreakingNews#1", "BreakingNews#2"]
+//    var news = ["BreakingNews#1", "BreakingNews#2"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.register(NewsTableViewCell.self, forCellReuseIdentifier: "NewsTableCellKey")
+        tableView.register(UINib(nibName: "NewsTableViewCell", bundle: nil),
+        forCellReuseIdentifier: "NewsCellXibKey")
+        
     }
     
 }
@@ -29,14 +31,16 @@ extension NewsTableViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return news.count
+        return 5
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "NewsTableCellKey", for: indexPath) as! NewsTableViewCell
-        let newsUnite = news[indexPath.row]
-        cell.newsLabel.text = newsUnite
-        //Решил сделать через viewController и добавление tableView, как объяснялось в методичке 3 и на прошлой лекции, но тоже произошел затык с возникновением nil. Если не найду решение, заодно со следующей ДЗ переделаю экран новостей заново, через UITableViewController.
+        let cell = tableView.dequeueReusableCell(withIdentifier: "NewsCellXibKey", for: indexPath) as! NewsTableViewCell
+//        let newsUnite = news[indexPath.row]
+        cell.newsLabel?.text = "Моя карьера в жюри премии #ЗолотойГлобус продолжается и я рад дебютировать в качестве ведущего подкаста HFPA In Conversation! Скоро, на http://GoldenGlobes.com и цифровых платформах США!"
+        cell.authorAvatar?.image = UIImage(named: "avatarNevsky")
+        cell.newsAuthor?.text = "Александр Невский"
+        cell.newsDate?.text = "06.09.2020"
         return cell
     }
 }

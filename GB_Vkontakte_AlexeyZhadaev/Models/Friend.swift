@@ -13,10 +13,4 @@ struct Friend: Equatable {
     let friendPhoto: String
     let friendGallery: [String]
 }
-/*
-Нормально реализовать загрузку галлереи из массива не получилось, т.к. все уперлось в нежелание, например, подобного конфигура работать с [String]
 
-func configure(for model: Friend) {
-photoGallery.image = UIImage.init(named: model.friendGallery)
-
-*/

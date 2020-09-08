@@ -15,15 +15,30 @@ class MyFriendsTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
     }
-
+    
+//    override func prepareForReuse() {
+//        super.prepareForReuse()
+//        customAvatarView = nil
+//        friendName = nil
+//    }
+    
     func configure(for model: Friend) {
         friendName.text = model.name
         customAvatarView.avatarImage.image = UIImage.init(named: model.friendPhoto)
         customAvatarView.configure()
+    }
+
+    @IBAction func animationButton(_ sender: Any) {
+        let animation = CASpringAnimation(keyPath: "transform.scale")
+        animation.fromValue = 0.6
+        animation.toValue = 1
+        animation.stiffness = 200
+        animation.mass = 2
+        animation.duration = 0.8
+        self.customAvatarView.layer.add(animation, forKey: nil)
     }
 }

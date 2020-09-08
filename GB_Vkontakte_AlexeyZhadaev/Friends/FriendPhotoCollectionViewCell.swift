@@ -9,10 +9,8 @@
 import UIKit
 
 class FriendPhotoCollectionViewCell: UICollectionViewCell {
+    
     @IBOutlet weak var photo: UIImageView!
     @IBOutlet weak var likeCustomController: LikeCustomControlUIView!
     
-//    func configure(for model: Friend) {
-//        photo.image = UIImage.init(named: model.friendGallery)
-//    }
 }
