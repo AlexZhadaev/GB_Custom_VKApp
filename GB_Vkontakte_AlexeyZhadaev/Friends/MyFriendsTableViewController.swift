@@ -20,9 +20,9 @@ class MyFriendsTableViewController: UITableViewController {
         generateFriends()
         sortFriends()
         
-        let tapGesture = UITapGestureRecognizer()
-        self.view.addGestureRecognizer(tapGesture)
-        tapGesture.addTarget(self, action: #selector(taptap))
+//        let tapGesture = UITapGestureRecognizer()
+//        self.view.addGestureRecognizer(tapGesture)
+//        tapGesture.addTarget(self, action: #selector(taptap))
         
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
@@ -50,13 +50,14 @@ class MyFriendsTableViewController: UITableViewController {
         let friend2 = Friend(name: "Александр Невский", friendPhoto: "avatarNevsky", friendGallery: ["nevsky1", "nevsky2", "nevsky3", "nevsky4", "nevsky5"])
         let friend3 = Friend(name: "Малыш Йода", friendPhoto: "avatarYoda", friendGallery: ["noAvatar", "noAvatar"])
         let friend4 = Friend(name: "Александр Пистолетов", friendPhoto: "noAvatar", friendGallery: ["noAvatar", "noAvatar"])
-        let friend5 = Friend(name: "Гейб Ньюэлл", friendPhoto: "noAvatar", friendGallery: ["noAvatar", "noAvatar"])
-        let friend6 = Friend(name: "Марк Дакаскос", friendPhoto: "noAvatar", friendGallery: ["noAvatar", "noAvatar"])
-        let friend7 = Friend(name: "Сарик Андреасян", friendPhoto: "noAvatar", friendGallery: ["noAvatar", "noAvatar"])
-        let friend8 = Friend(name: "Оливье Грюнер", friendPhoto: "noAvatar", friendGallery: ["noAvatar", "noAvatar"])
-        let friend9 = Friend(name: "Каспер Ван Дин", friendPhoto: "noAvatar", friendGallery: ["noAvatar", "noAvatar"])
-        let friend10 = Friend(name: "Дон Уилсон", friendPhoto: "noAvatar", friendGallery: ["noAvatar", "noAvatar"])
-        let friend11 = Friend(name: "Маттиас Хьюз", friendPhoto: "noAvatar", friendGallery: ["noAvatar", "noAvatar"])
+        let friend5 = Friend(name: "Гейб Ньюэлл", friendPhoto: "noAvatar", friendGallery: ["noAvatar", "noAvatar", "nevsky1"])
+        let friend6 = Friend(name: "Марк Дакаскос", friendPhoto: "noAvatar", friendGallery: ["noAvatar", "noAvatar", "nevsky2"])
+        let friend7 = Friend(name: "Сарик Андреасян", friendPhoto: "noAvatar", friendGallery: ["noAvatar", "noAvatar", "nevsky3"])
+        let friend8 = Friend(name: "Оливье Грюнер", friendPhoto: "noAvatar", friendGallery: ["noAvatar", "noAvatar", "nevsky4"])
+        let friend9 = Friend(name: "Каспер Ван Дин", friendPhoto: "noAvatar", friendGallery: ["noAvatar", "noAvatar", "nevsky5"])
+        let friend10 = Friend(name: "Дон Уилсон", friendPhoto: "noAvatar", friendGallery: ["noAvatar", "nevsky1", "nevsky5"])
+        let friend11 = Friend(name: "Маттиас Хьюз", friendPhoto: "noAvatar", friendGallery: ["noAvatar", "nevsky2", "nevsky3"])
+        
         friends.append(friend1)
         friends.append(friend2)
         friends.append(friend3)
@@ -93,10 +94,11 @@ class MyFriendsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if isFiltering {
             return filteredFriends.count
-        }
-        let friendKey = friendSection[section]
-        if let userValue = friendDictionary[friendKey] {
-            return userValue.count
+        } else {
+            let friendKey = friendSection[section]
+            if let userValue = friendDictionary[friendKey] {
+                return userValue.count
+            }
         }
         return 0
     }
@@ -104,7 +106,7 @@ class MyFriendsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MyFriendCell", for: indexPath) as! MyFriendsTableViewCell
         if isFiltering {
-            let friend = filteredFriends[indexPath.row]
+            _ = filteredFriends[indexPath.row]
             cell.configure(for: filteredFriends[indexPath.row])
         } else {
             let friendKey = friendSection[indexPath.section]
@@ -153,25 +155,25 @@ class MyFriendsTableViewController: UITableViewController {
         tableView.reloadData()
     }
     //MARK:- Gestures
-    @objc func taptap(recognizer: UITapGestureRecognizer) {
-        if recognizer.state == UIGestureRecognizer.State.ended {
-            let tapLocation = recognizer.location(in: self.tableView)
-            if let tapIndexPath = self.tableView.indexPathForRow(at: tapLocation) {
-                if let tappedCell = self.tableView.cellForRow(at: tapIndexPath) as? MyFriendsTableViewCell {
-                    let animation = CASpringAnimation(keyPath: "transform.scale")
-                    animation.fromValue = 0.6
-                    animation.toValue = 1
-                    animation.stiffness = 200
-                    animation.mass = 2
-                    animation.duration = 0.8
-                    tappedCell.customAvatarView.layer.add(animation, forKey: nil)
-                    
-                }
-            }
-        }
-    }
+//    @objc func taptap(recognizer: UITapGestureRecognizer) {
+//        if recognizer.state == UIGestureRecognizer.State.ended {
+//            let tapLocation = recognizer.location(in: self.tableView)
+//            if let tapIndexPath = self.tableView.indexPathForRow(at: tapLocation) {
+//                if let tappedCell = self.tableView.cellForRow(at: tapIndexPath) as? MyFriendsTableViewCell {
+//                    let animation = CASpringAnimation(keyPath: "transform.scale")
+//                    animation.fromValue = 0.6
+//                    animation.toValue = 1
+//                    animation.stiffness = 200
+//                    animation.mass = 2
+//                    animation.duration = 0.8
+//                    tappedCell.customAvatarView.layer.add(animation, forKey: nil)
+//
+//                }
+//            }
+//        }
+//    }
+    
 }
-
 //MARK:- Extensions
 
 extension MyFriendsTableViewController: UISearchResultsUpdating {

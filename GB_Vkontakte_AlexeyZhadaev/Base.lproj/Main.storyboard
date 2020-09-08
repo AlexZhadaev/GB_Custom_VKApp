@@ -305,16 +305,31 @@
                                                     <rect key="frame" x="0.0" y="-1" width="78" height="78"/>
                                                     <gestureRecognizers/>
                                                 </imageView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WJk-yx-Ot3">
+                                                    <rect key="frame" x="0.0" y="0.0" width="78" height="76"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="78" id="6J2-AY-x8J"/>
+                                                        <constraint firstAttribute="height" constant="78" id="Zrg-az-PEW"/>
+                                                    </constraints>
+                                                    <connections>
+                                                        <action selector="animationButton:" destination="Raj-mc-uOP" eventType="touchUpInside" id="LIR-lb-eXs"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                             <constraints>
+                                                <constraint firstItem="WJk-yx-Ot3" firstAttribute="top" secondItem="zuZ-4a-rHA" secondAttribute="top" id="03S-fI-hNy"/>
+                                                <constraint firstAttribute="trailing" secondItem="WJk-yx-Ot3" secondAttribute="trailing" id="09G-Z0-iYO"/>
                                                 <constraint firstAttribute="bottom" secondItem="UQA-28-gSK" secondAttribute="bottom" constant="-2" id="ICt-Og-oAl"/>
                                                 <constraint firstItem="hhn-l9-wSU" firstAttribute="centerY" secondItem="zuZ-4a-rHA" secondAttribute="centerY" id="KlN-VR-poQ"/>
                                                 <constraint firstItem="UQA-28-gSK" firstAttribute="centerX" secondItem="zuZ-4a-rHA" secondAttribute="centerX" id="LZ4-nr-rwN"/>
                                                 <constraint firstAttribute="width" constant="78" id="Qvu-Gb-prt"/>
                                                 <constraint firstItem="hhn-l9-wSU" firstAttribute="leading" secondItem="UQA-28-gSK" secondAttribute="leading" id="SHh-bZ-y2y"/>
                                                 <constraint firstAttribute="height" constant="78" id="XNF-lO-DVm"/>
+                                                <constraint firstItem="WJk-yx-Ot3" firstAttribute="leading" secondItem="zuZ-4a-rHA" secondAttribute="leading" id="g1D-4C-9zT"/>
                                                 <constraint firstItem="hhn-l9-wSU" firstAttribute="trailing" secondItem="UQA-28-gSK" secondAttribute="trailing" id="jQ7-ew-JJs"/>
+                                                <constraint firstAttribute="bottom" secondItem="WJk-yx-Ot3" secondAttribute="bottom" id="lSI-9i-qjw"/>
                                                 <constraint firstItem="hhn-l9-wSU" firstAttribute="top" secondItem="zuZ-4a-rHA" secondAttribute="top" constant="-1" id="nkA-73-uhK"/>
                                                 <constraint firstItem="UQA-28-gSK" firstAttribute="leading" secondItem="zuZ-4a-rHA" secondAttribute="leading" id="q72-VU-ogq"/>
                                                 <constraint firstItem="UQA-28-gSK" firstAttribute="top" secondItem="zuZ-4a-rHA" secondAttribute="top" id="wf9-iT-W2F"/>
