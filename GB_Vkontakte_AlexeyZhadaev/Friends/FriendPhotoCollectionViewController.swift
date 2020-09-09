@@ -16,7 +16,6 @@ class FriendPhotoCollectionViewController: UICollectionViewController {
         super.viewDidLoad()
         title = friend.name
     }
-
     //MARK: - UICollectionViewDataSource
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
