@@ -437,29 +437,35 @@
                     </collectionView>
                     <navigationItem key="navigationItem" title="Title" id="oph-XW-XVP"/>
                     <connections>
-                        <segue destination="nTt-Kf-kcx" kind="presentation" id="KV4-Nn-AZ2"/>
+                        <segue destination="nTt-Kf-kcx" kind="presentation" identifier="ShowGalleryViewKey" id="KV4-Nn-AZ2"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wN6-EW-68A" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2830" y="-477"/>
         </scene>
-        <!--Gallery View Controller-->
+        <!--Title-->
         <scene sceneID="Peo-0V-l65">
             <objects>
-                <viewController id="nTt-Kf-kcx" customClass="GalleryViewController" customModule="GB_Vkontakte_AlexeyZhadaev" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="GalleryViewControllerKey" id="nTt-Kf-kcx" customClass="GalleryViewController" customModule="GB_Vkontakte_AlexeyZhadaev" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7pR-5y-ECZ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ArO-8h-fkz">
-                                <rect key="frame" x="20" y="68" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ArO-8h-fkz">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="ArO-8h-fkz" firstAttribute="leading" secondItem="XF3-H0-0BZ" secondAttribute="leading" id="N8v-nb-9su"/>
+                            <constraint firstItem="XF3-H0-0BZ" firstAttribute="bottom" secondItem="ArO-8h-fkz" secondAttribute="bottom" id="Qm6-4H-CZh"/>
+                            <constraint firstItem="ArO-8h-fkz" firstAttribute="top" secondItem="XF3-H0-0BZ" secondAttribute="top" id="iDw-up-gXm"/>
+                            <constraint firstItem="XF3-H0-0BZ" firstAttribute="trailing" secondItem="ArO-8h-fkz" secondAttribute="trailing" id="lBQ-Qb-vIF"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="XF3-H0-0BZ"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Title" id="EFZ-VU-i7h"/>
                     <connections>
                         <outlet property="photoImage" destination="ArO-8h-fkz" id="8bk-84-CeI"/>
                     </connections>
