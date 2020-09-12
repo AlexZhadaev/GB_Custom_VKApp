@@ -20,12 +20,6 @@ class MyFriendsTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-//    override func prepareForReuse() {
-//        super.prepareForReuse()
-//        customAvatarView = nil
-//        friendName = nil
-//    }
-    
     func configure(for model: Friend) {
         friendName.text = model.name
         customAvatarView.avatarImage.image = UIImage.init(named: model.friendPhoto)

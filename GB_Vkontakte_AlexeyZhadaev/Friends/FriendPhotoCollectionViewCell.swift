@@ -12,5 +12,5 @@ class FriendPhotoCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var photo: UIImageView!
     @IBOutlet weak var likeCustomController: LikeCustomControlUIView!
-    
+
 }

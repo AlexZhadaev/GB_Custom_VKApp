@@ -74,15 +74,15 @@ class MyFriendsTableViewController: UITableViewController {
     }
     
     private func sortFriends() {
-        for user in friends {
-            let key = "\(user.name[user.name.startIndex])".uppercased()
-            if var userValue = self.friendDictionary[key] {
-                userValue.append(user)
-                self.friendDictionary[key] = userValue
+        for friend in friends {
+            let friendKey = "\(friend.name[friend.name.startIndex])".uppercased()
+            if var friendValues = friendDictionary[friendKey] {
+                friendValues.append(friend)
+                friendDictionary[friendKey] = friendValues
             } else {
-                self.friendDictionary[key] = [user]
+                friendDictionary[friendKey] = [friend]
             }
-            self.friendSection = [String](self.friendDictionary.keys).sorted()
+            self.friendSection = [String](friendDictionary.keys).sorted()
         }
     }
     // MARK: - Table view data source
@@ -96,8 +96,8 @@ class MyFriendsTableViewController: UITableViewController {
             return filteredFriends.count
         } else {
             let friendKey = friendSection[section]
-            if let userValue = friendDictionary[friendKey] {
-                return userValue.count
+            if let friendValues = friendDictionary[friendKey] {
+                return friendValues.count
             }
         }
         return 0
@@ -110,8 +110,8 @@ class MyFriendsTableViewController: UITableViewController {
             cell.configure(for: filteredFriends[indexPath.row])
         } else {
             let friendKey = friendSection[indexPath.section]
-            if let friend = friendDictionary[friendKey] {
-                cell.configure(for: friend[indexPath.row])
+            if let friendValues = friendDictionary[friendKey] {
+                cell.configure(for: friendValues[indexPath.row])
             }
         }
         return cell
@@ -133,10 +133,10 @@ class MyFriendsTableViewController: UITableViewController {
     // MARK: - TableView delegate
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let whichIsSelected = indexPath.row
-        let selectedFriend = friends[whichIsSelected]
+        let selectedSection = friendSection[indexPath.section]
+        let selectedFriend = friendDictionary[selectedSection]
         let friendPhotoController = storyboard?.instantiateViewController(identifier: "PhotoGalleryStoryboardKey") as! FriendPhotoCollectionViewController
-        friendPhotoController.friend = selectedFriend
+        friendPhotoController.friend = selectedFriend?[indexPath.row]
         self.show(friendPhotoController, sender: nil)
     }
     
