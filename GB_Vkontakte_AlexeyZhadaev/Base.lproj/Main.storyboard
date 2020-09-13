@@ -497,7 +497,7 @@
         <!--Друзья-->
         <scene sceneID="7Lc-DH-6ew">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jeX-Qe-LQ5" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jeX-Qe-LQ5" customClass="CustomNavigationController" customModule="GB_Vkontakte_AlexeyZhadaev" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Друзья" image="person.2.fill" catalog="system" id="mkF-Ig-AxC"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Tzh-Fj-NNJ">
