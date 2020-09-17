@@ -46,9 +46,9 @@ class MyFriendsTableViewController: UITableViewController {
     }
     
     private func generateFriends() {
-        let friend1 = Friend(name: "Гарольд Скрывающий Боль", friendPhoto: "avatarHarold", friendGallery: ["avatarHarold","noAvatar"])
+        let friend1 = Friend(name: "Гарольд Скрывающий Боль", friendPhoto: "avatarHarold", friendGallery: ["harold1","harold2","harold3","harold4","harold5","harold6","harold7","harold8","harold9","harold10","harold11"])
         let friend2 = Friend(name: "Александр Невский", friendPhoto: "avatarNevsky", friendGallery: ["nevsky1", "nevsky2", "nevsky3", "nevsky4", "nevsky5"])
-        let friend3 = Friend(name: "Малыш Йода", friendPhoto: "avatarYoda", friendGallery: ["noAvatar", "noAvatar"])
+        let friend3 = Friend(name: "Малыш Йода", friendPhoto: "avatarYoda", friendGallery: ["yoda1", "yoda2", "yoda3", "yoda4", "yoda5", "yoda6", "yoda7", "yoda8", "yoda9"])
         let friend4 = Friend(name: "Александр Пистолетов", friendPhoto: "noAvatar", friendGallery: ["noAvatar", "noAvatar"])
         let friend5 = Friend(name: "Гейб Ньюэлл", friendPhoto: "noAvatar", friendGallery: ["noAvatar", "noAvatar", "nevsky1"])
         let friend6 = Friend(name: "Марк Дакаскос", friendPhoto: "noAvatar", friendGallery: ["noAvatar", "noAvatar", "nevsky2"])

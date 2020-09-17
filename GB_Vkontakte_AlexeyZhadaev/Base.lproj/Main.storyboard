@@ -383,14 +383,14 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FriendPhotoCell" id="wJR-8U-J03" customClass="FriendPhotoCollectionViewCell" customModule="GB_Vkontakte_AlexeyZhadaev" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" reuseIdentifier="FriendPhotoCell" id="wJR-8U-J03" customClass="FriendPhotoCollectionViewCell" customModule="GB_Vkontakte_AlexeyZhadaev" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="180" height="180"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="3c8-4V-9f4">
                                     <rect key="frame" x="0.0" y="0.0" width="180" height="180"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="friendphoto1" translatesAutoresizingMaskIntoConstraints="NO" id="0pe-V6-WYK">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0pe-V6-WYK">
                                             <rect key="frame" x="8" y="8" width="164" height="164"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
@@ -437,7 +437,7 @@
                     </collectionView>
                     <navigationItem key="navigationItem" title="Title" id="oph-XW-XVP"/>
                     <connections>
-                        <segue destination="nTt-Kf-kcx" kind="presentation" identifier="ShowGalleryViewKey" id="KV4-Nn-AZ2"/>
+                        <segue destination="nTt-Kf-kcx" kind="show" identifier="ShowGalleryViewKey" id="KV4-Nn-AZ2"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wN6-EW-68A" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -449,11 +449,11 @@
             <objects>
                 <viewController storyboardIdentifier="GalleryViewControllerKey" id="nTt-Kf-kcx" customClass="GalleryViewController" customModule="GB_Vkontakte_AlexeyZhadaev" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7pR-5y-ECZ">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ArO-8h-fkz">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -587,7 +587,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="friendphoto1" width="150" height="150"/>
         <image name="paperplane.fill" catalog="system" width="128" height="121"/>
         <image name="person.2.fill" catalog="system" width="128" height="80"/>
         <image name="person.3" catalog="system" width="128" height="62"/>
