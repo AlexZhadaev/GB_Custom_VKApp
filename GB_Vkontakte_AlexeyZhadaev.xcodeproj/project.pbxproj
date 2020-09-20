@@ -34,7 +34,6 @@
 		35C1BB7224F8246300A7ACBC /* LikeCustomControlUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C1BB7124F8246300A7ACBC /* LikeCustomControlUIView.swift */; };
 		35DE855424FD3D2200A95717 /* NewsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35DE855324FD3D2200A95717 /* NewsTableViewController.swift */; };
 		35DE855624FD40AC00A95717 /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35DE855524FD40AC00A95717 /* NewsTableViewCell.swift */; };
-		35F278A624D717D200635114 /* TabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F278A524D717D200635114 /* TabbarViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,7 +66,6 @@
 		35C1BB7124F8246300A7ACBC /* LikeCustomControlUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeCustomControlUIView.swift; sourceTree = "<group>"; };
 		35DE855324FD3D2200A95717 /* NewsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewController.swift; sourceTree = "<group>"; };
 		35DE855524FD40AC00A95717 /* NewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
-		35F278A524D717D200635114 /* TabbarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,7 +151,6 @@
 				35A3BAE124D20AD300933891 /* SceneDelegate.swift */,
 				35A3BAF324D20B5000933891 /* LoginFormController.swift */,
 				35A3BAE524D20AD300933891 /* Main.storyboard */,
-				35F278A524D717D200635114 /* TabbarViewController.swift */,
 				35A3BAE824D20AD500933891 /* Assets.xcassets */,
 				35A3BAEA24D20AD500933891 /* LaunchScreen.storyboard */,
 				35A3BAED24D20AD500933891 /* Info.plist */,
@@ -246,7 +243,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				35F278A624D717D200635114 /* TabbarViewController.swift in Sources */,
 				350B467324DC6F1D00910FCE /* FriendPhotoCollectionViewCell.swift in Sources */,
 				3556A65524F3E98900BF6847 /* GradientView.swift in Sources */,
 				3533F2072506BDEE001975AB /* LoadingDots.swift in Sources */,
