@@ -48,10 +48,15 @@ class GalleryViewController: UIViewController {
         let panRecognizer = UIPanGestureRecognizer(target: self, action: #selector(onPan(_:)))
         self.view.addGestureRecognizer(panRecognizer)
         
-        let panCloseRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handleDismiss))
-        self.view.addGestureRecognizer(panCloseRecognizer)
+//        let panCloseRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handleDismiss))
+//        self.view.addGestureRecognizer(panCloseRecognizer)
     }
     
+//    @objc func handlePresentView() {
+//        let dismissViewController = FriendPhotoCollectionViewController() // Your view controller
+//        dismissViewController.modalPresentationStyle = .overCurrentContext // Disables that black background swift enables by default when presenting a view controller
+//        present(dismissViewController, animated: true)
+//    }
     //MARK:- Gestures animation
     
     func isDirectionChanged(_ dx: CGFloat) -> Bool {
