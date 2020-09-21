@@ -56,9 +56,4 @@ class FriendPhotoCollectionViewController: UICollectionViewController {
         self.show(galleryViewController, sender: nil)
     }
     
-//    @objc func handlePresentView() {
-//        let dismissViewController = GalleryViewController() // Your view controller
-//        dismissViewController.modalPresentationStyle = .overCurrentContext // Disables that black background swift enables by default when presenting a view controller
-//        present(dismissViewController, animated: true)
-//    }
 }
