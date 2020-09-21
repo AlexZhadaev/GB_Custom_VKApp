@@ -8,7 +8,7 @@
 
 import UIKit
 
-@IBDesignable class CustomAvatarView: UIView {
+class CustomAvatarView: UIView {
     
     @IBOutlet weak var avatarImage: UIImageView!
     @IBOutlet weak var avatarShadow: UIView!
