@@ -8,7 +8,7 @@
 
 import UIKit
 
-@IBDesignable class LoadingDots: UIView {
+class LoadingDots: UIView {
     
     private let dot = CALayer()
     private let numberOfDots = 3
