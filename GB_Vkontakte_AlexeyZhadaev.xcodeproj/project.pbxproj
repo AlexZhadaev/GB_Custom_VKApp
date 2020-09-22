@@ -24,6 +24,7 @@
 		356F8B9024DB4F64001C89BA /* FindGroupsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356F8B8F24DB4F64001C89BA /* FindGroupsTableViewCell.swift */; };
 		358343D52505479B007017DC /* NewsPhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358343D32505479B007017DC /* NewsPhotoCollectionViewCell.swift */; };
 		358343D62505479B007017DC /* NewsPhotoCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 358343D42505479B007017DC /* NewsPhotoCollectionViewCell.xib */; };
+		359B49E9251A73FF00878855 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359B49E8251A73FF00878855 /* Session.swift */; };
 		35A3BAE024D20AD300933891 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A3BADF24D20AD300933891 /* AppDelegate.swift */; };
 		35A3BAE224D20AD300933891 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A3BAE124D20AD300933891 /* SceneDelegate.swift */; };
 		35A3BAE724D20AD300933891 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35A3BAE524D20AD300933891 /* Main.storyboard */; };
@@ -54,6 +55,7 @@
 		356F8B8F24DB4F64001C89BA /* FindGroupsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindGroupsTableViewCell.swift; sourceTree = "<group>"; };
 		358343D32505479B007017DC /* NewsPhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsPhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		358343D42505479B007017DC /* NewsPhotoCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsPhotoCollectionViewCell.xib; sourceTree = "<group>"; };
+		359B49E8251A73FF00878855 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		35A3BADC24D20AD300933891 /* GB_Vkontakte_AlexeyZhadaev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GB_Vkontakte_AlexeyZhadaev.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		35A3BADF24D20AD300933891 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		35A3BAE124D20AD300933891 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 			isa = PBXGroup;
 			children = (
 				350B467524DC738B00910FCE /* Friend.swift */,
+				359B49E8251A73FF00878855 /* Session.swift */,
 				350B467724DC739D00910FCE /* Group.swift */,
 				3556A65424F3E98900BF6847 /* GradientView.swift */,
 				3554667624F6DAE700EAA7F4 /* CustomAvatarView.swift */,
@@ -262,6 +265,7 @@
 				350B467C24DC74C200910FCE /* MyFriendsTableViewCell.swift in Sources */,
 				350B466F24DC613700910FCE /* MyGroupsTableViewCell.swift in Sources */,
 				35C1BB7224F8246300A7ACBC /* LikeCustomControlUIView.swift in Sources */,
+				359B49E9251A73FF00878855 /* Session.swift in Sources */,
 				350B467624DC738B00910FCE /* Friend.swift in Sources */,
 				35DE855624FD40AC00A95717 /* NewsTableViewCell.swift in Sources */,
 				3544E8A5250E81D80062C20E /* CustomPushAnimator.swift in Sources */,
