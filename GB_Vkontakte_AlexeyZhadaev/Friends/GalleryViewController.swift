@@ -30,9 +30,7 @@ class GalleryViewController: UIViewController {
     
     var currentMode: ScreenMode = .normal
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
+    fileprivate func setupPhoto() {
         let index = currentIndex
         let count = photos.count
         let photo = photos[index]
@@ -41,7 +39,9 @@ class GalleryViewController: UIViewController {
         if count <= index {return}
         
         photoImage.image = photo
-        
+    }
+    
+    fileprivate func setupGestures() {
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(didSingleTapWith(_:)))
         self.view.addGestureRecognizer(tapRecognizer)
         
@@ -50,6 +50,12 @@ class GalleryViewController: UIViewController {
         
 //        let panCloseRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handleDismiss))
 //        self.view.addGestureRecognizer(panCloseRecognizer)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupPhoto()
+        setupGestures()
     }
     
     //MARK:- Gestures animation

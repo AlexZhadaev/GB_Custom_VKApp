@@ -16,13 +16,16 @@ class FriendPhotoCollectionViewController: UICollectionViewController {
     
     var selectedIndexPath: IndexPath!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    fileprivate func createFriendGallery() {
         title = friend.name
-        
         for image in friend.friendGallery {
             photos.append(UIImage(named: image)!)
         }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        createFriendGallery()
     }
     
     
