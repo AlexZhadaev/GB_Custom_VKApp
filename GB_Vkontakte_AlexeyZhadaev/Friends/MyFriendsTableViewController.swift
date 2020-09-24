@@ -15,21 +15,24 @@ class MyFriendsTableViewController: UITableViewController {
     var friendSection = [String]()
     var filteredFriends: [Friend] = []
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        generateFriends()
-        sortFriends()
-        
-//        let tapGesture = UITapGestureRecognizer()
-//        self.view.addGestureRecognizer(tapGesture)
-//        tapGesture.addTarget(self, action: #selector(taptap))
-        
+    fileprivate func searchControllerSetup() {
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Поиск"
         navigationItem.searchController = searchController
         definesPresentationContext = true
         searchController.searchBar.delegate = self
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        generateFriends()
+        sortFriends()
+        searchControllerSetup()
+        
+//        let tapGesture = UITapGestureRecognizer()
+//        self.view.addGestureRecognizer(tapGesture)
+//        tapGesture.addTarget(self, action: #selector(taptap))
     }
     
     let searchController = UISearchController(searchResultsController: nil)
