@@ -369,9 +369,6 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Друзья" id="rjD-Y0-yB9"/>
-                    <connections>
-                        <segue destination="Rak-Lo-Dng" kind="show" id="u0e-vM-thz"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I0q-DD-eFI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -445,9 +442,6 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" title="Title" id="oph-XW-XVP"/>
-                    <connections>
-                        <segue destination="nTt-Kf-kcx" kind="presentation" identifier="ShowGalleryViewKey" id="KV4-Nn-AZ2"/>
-                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wN6-EW-68A" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -458,11 +452,11 @@
             <objects>
                 <viewController storyboardIdentifier="GalleryViewControllerKey" id="nTt-Kf-kcx" customClass="GalleryViewController" customModule="GB_Vkontakte_AlexeyZhadaev" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7pR-5y-ECZ">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ArO-8h-fkz">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="XF3-H0-0BZ"/>
