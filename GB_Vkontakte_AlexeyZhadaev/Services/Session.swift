@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Alamofire
 
 class Session {
     
@@ -16,5 +17,5 @@ class Session {
     
     var token: String?
     var userId: Int?
-    
 }
+
