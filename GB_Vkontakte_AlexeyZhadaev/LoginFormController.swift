@@ -19,20 +19,15 @@ class LoginFormController: UIViewController {
     
     // MARK: - Lifecycle
     var urlComponents = URLComponents()
-    let session = Session.instance
-    let vkService = VkFriendsService()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //        authVk()
-        vkService.loadVkData(method: "friends.get")
-        
+        authVk()
     }
     
         override func viewDidAppear(_ animated: Bool) {
             super.viewDidAppear(animated)
-    
             let vc = storyboard?.instantiateViewController(identifier: "TabBarStoryboardKey") as! TabBarController
             self.show(vc, sender: nil)
         }
@@ -77,8 +72,9 @@ extension LoginFormController: WKNavigationDelegate {
             }
         
         let token = params["access_token"]
+        let session = Session.instance
         session.token = token
-        debugPrint("Token is: \(session.token)")
+        debugPrint("Token is:\(session.token)")
         
         decisionHandler(.cancel)
     }

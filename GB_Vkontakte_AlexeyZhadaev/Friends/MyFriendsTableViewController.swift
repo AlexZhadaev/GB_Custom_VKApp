@@ -9,26 +9,19 @@
 import UIKit
 
 class MyFriendsTableViewController: UITableViewController {
-    
+    let vkService = VkFriendsService()
     var friends: [Friend] = []
     var friendDictionary = [String: [Friend]]()
     var friendSection = [String]()
     var filteredFriends: [Friend] = []
     
-    fileprivate func searchControllerSetup() {
-        searchController.searchResultsUpdater = self
-        searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Поиск"
-        navigationItem.searchController = searchController
-        definesPresentationContext = true
-        searchController.searchBar.delegate = self
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         generateFriends()
         sortFriends()
         searchControllerSetup()
+        vkService.loadFriendsData()
         
 //        let tapGesture = UITapGestureRecognizer()
 //        self.view.addGestureRecognizer(tapGesture)
@@ -46,6 +39,15 @@ class MyFriendsTableViewController: UITableViewController {
             searchController.searchBar.selectedScopeButtonIndex != 0
         return searchController.isActive &&
             (!isSearchBarEmpty || searchBarScopeIsFiltering)
+    }
+    
+    private func searchControllerSetup() {
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Поиск"
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
+        searchController.searchBar.delegate = self
     }
     
     private func generateFriends() {
