@@ -23,8 +23,7 @@ class MyFriendsTableViewController: UITableViewController {
         searchControllerSetup()
         vkService.loadFriendsData()
         
-//        let tapGesture = UITapGestureRecognizer()
-//        self.view.addGestureRecognizer(tapGesture)
+
 //        tapGesture.addTarget(self, action: #selector(taptap))
     }
     
