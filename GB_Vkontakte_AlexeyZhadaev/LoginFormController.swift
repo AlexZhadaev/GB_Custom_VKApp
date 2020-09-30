@@ -26,12 +26,6 @@ class LoginFormController: UIViewController {
         authVk()
     }
     
-        override func viewDidAppear(_ animated: Bool) {
-            super.viewDidAppear(animated)
-            let vc = storyboard?.instantiateViewController(identifier: "TabBarStoryboardKey") as! TabBarController
-            self.show(vc, sender: nil)
-        }
-    
     private func authVk() {
         urlComponents.scheme = "https"
         urlComponents.host = "oauth.vk.com"
@@ -72,10 +66,13 @@ extension LoginFormController: WKNavigationDelegate {
             }
         
         let token = params["access_token"]
-        let session = Session.instance
-        session.token = token
-        debugPrint("Token is:\(session.token)")
+        Session.instance.token = token
+        
+        debugPrint("Token is:\(token ?? "")")
         
         decisionHandler(.cancel)
+        
+        let vc = storyboard?.instantiateViewController(identifier: "TabBarStoryboardKey") as! UITabBarController
+        self.show(vc, sender: nil)
     }
 }
