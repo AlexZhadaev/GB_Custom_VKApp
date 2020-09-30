@@ -7,160 +7,75 @@
 //
 
 import UIKit
+import WebKit
 
 class LoginFormController: UIViewController {
     
-    @IBOutlet weak var uiScrollView: UIScrollView!
-    @IBOutlet weak var loginInput: UITextField!
-    @IBOutlet weak var passwordInput: UITextField!
-    @IBOutlet weak var titleView: UILabel!
-    @IBOutlet weak var loginTitleView: UILabel!
-    @IBOutlet weak var passwordTitleView: UILabel!
-    @IBOutlet weak var loginButton: UIButton!
-    @IBOutlet weak var loadingDots: LoadingDots!
+    @IBOutlet weak var webView: WKWebView! {
+        didSet {
+            webView.navigationDelegate = self
+        }
+    }
     
     // MARK: - Lifecycle
+    var urlComponents = URLComponents()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let hideKeyboardGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
-        uiScrollView?.addGestureRecognizer(hideKeyboardGesture)
-        animateTitleAppearing()
-        animateAuthButton()
-        animateFieldsAppearing()
-        animateTitlesAppearing()
+        authVk()
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
+        override func viewDidAppear(_ animated: Bool) {
+            super.viewDidAppear(animated)
+            let vc = storyboard?.instantiateViewController(identifier: "TabBarStoryboardKey") as! TabBarController
+            self.show(vc, sender: nil)
+        }
+    
+    private func authVk() {
+        urlComponents.scheme = "https"
+        urlComponents.host = "oauth.vk.com"
+        urlComponents.path = "/authorize"
+        urlComponents.queryItems = [
+            URLQueryItem(name: "client_id", value: "7610592"),
+            URLQueryItem(name: "display", value: "mobile"),
+            URLQueryItem(name: "redirect_uri", value: "https://oauth.vk.com/blank.html"),
+            URLQueryItem(name: "scope", value: "262150"),
+            URLQueryItem(name: "response_type", value: "token"),
+            URLQueryItem(name: "v", value: "5.68")
+        ]
         
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
-    }
-    
-    // MARK: - Keyboard function
-    @objc func keyboardWasShown(notification: Notification) {
+        let request = URLRequest(url: urlComponents.url!)
         
-        let info = notification.userInfo! as NSDictionary
-        let kbSize = (info.value(forKey: UIResponder.keyboardFrameEndUserInfoKey) as! NSValue).cgRectValue.size
-        let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: kbSize.height, right: 0.0)
+        webView.load(request)
+    }
+}
+
+extension LoginFormController: WKNavigationDelegate {
+    func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
         
-        self.uiScrollView?.contentInset = contentInsets
-        uiScrollView?.scrollIndicatorInsets = contentInsets
-    }
-    
-    @objc func keyboardWillBeHidden(notification: Notification) {
-        let contentInsets = UIEdgeInsets.zero
-        uiScrollView?.contentInset = contentInsets
-    }
-    
-    @objc func hideKeyboard() {
-        self.uiScrollView?.endEditing(true)
-    }
-    
-    
-    @IBAction func loginButtonPressed(_ sender: Any) {
-        let login = loginInput.text!
-        let password = passwordInput.text!
-        loadingDots.colorOfDots = .white
-        if login == "geek" && password == "brains" {
-            print("успешная авторизация")
-        } else {
-            print("неуспешная авторизация")
+        guard let url = navigationResponse.response.url, url.path == "/blank.html",
+              let fragment = url.fragment  else {
+            decisionHandler(.allow)
+            return
         }
         
-    }
-    
-    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        // Проверяем данные
-        let checkResult = checkUserData()
+        let params = fragment
+            .components(separatedBy: "&")
+            .map { $0.components(separatedBy: "=") }
+            .reduce([String: String]()) { result, param in
+                var dict = result
+                let key = param[0]
+                let value = param[1]
+                dict[key] = value
+                return dict
+            }
         
-        // Если данные не верны, покажем ошибку
-        if !checkResult {
-            showLoginError()
-        }
+        let token = params["access_token"]
+        let session = Session.instance
+        session.token = token
+        debugPrint("Token is:\(session.token)")
         
-        // Вернем результат
-        return checkResult
-    }
-    
-    func checkUserData() -> Bool {
-        guard let login = loginInput.text,
-            let password = passwordInput.text else { return false }
-        
-        if login == "geek" && password == "brains" {
-            return true
-        } else {
-            return false
-        }
-    }
-    
-    func showLoginError() {
-        // Создаем контроллер
-        let alter = UIAlertController(title: "Ошибка", message: "Введены не верные данные пользователя", preferredStyle: .alert)
-        // Создаем кнопку для UIAlertController
-        let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-        // Добавляем кнопку на UIAlertController
-        alter.addAction(action)
-        // Показываем UIAlertController
-        present(alter, animated: true, completion: nil)
-    }
-    
-    // MARK: - Animations
-    
-    func animateTitlesAppearing() {
-        let offset = view.bounds.width
-        loginTitleView.transform = CGAffineTransform(translationX: -offset, y: 0)
-        passwordTitleView.transform = CGAffineTransform(translationX: offset, y: 0)
-        
-        UIView.animate(withDuration: 1,
-                       delay: 1,
-                       options: .curveEaseOut,
-                       animations: {
-                        self.loginTitleView.transform = .identity
-                        self.passwordTitleView.transform = .identity
-        },
-                       completion: nil)
-    }
-    
-    func animateTitleAppearing() {
-        self.titleView.transform = CGAffineTransform(translationX: 0,
-                                                     y: -self.view.bounds.height/2)
-        
-        UIView.animate(withDuration: 1,
-                       delay: 1,
-                       usingSpringWithDamping: 0.5,
-                       initialSpringVelocity: 0,
-                       options: .curveEaseOut,
-                       animations: {
-                        self.titleView.transform = .identity
-        },
-                       completion: nil)
-    }
-    
-    func animateFieldsAppearing() {
-        let fadeInAnimation = CABasicAnimation(keyPath: "opacity")
-        fadeInAnimation.fromValue = 0
-        fadeInAnimation.toValue = 1
-        fadeInAnimation.duration = 1
-        fadeInAnimation.beginTime = CACurrentMediaTime() + 1
-        fadeInAnimation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
-        fadeInAnimation.fillMode = CAMediaTimingFillMode.backwards
-        
-        self.loginInput.layer.add(fadeInAnimation, forKey: nil)
-        self.passwordInput.layer.add(fadeInAnimation, forKey: nil)
-    }
-    
-    func animateAuthButton() {
-        let animation = CASpringAnimation(keyPath: "transform.scale")
-        animation.fromValue = 0
-        animation.toValue = 1
-        animation.stiffness = 200
-        animation.mass = 2
-        animation.duration = 2
-        animation.beginTime = CACurrentMediaTime() + 1
-        animation.fillMode = CAMediaTimingFillMode.backwards
-        
-        self.loginButton.layer.add(animation, forKey: nil)
+        decisionHandler(.cancel)
     }
 }

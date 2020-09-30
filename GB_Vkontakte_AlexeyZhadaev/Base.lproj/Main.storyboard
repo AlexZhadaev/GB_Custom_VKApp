@@ -18,113 +18,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F3o-c3-Cin">
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rOV-iE-ecl">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="VКонтакте" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0wI-H4-IYm">
-                                        <rect key="frame" x="128.5" y="100" width="157" height="36"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="36" id="wwa-ft-AiV"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
-                                        <color key="textColor" systemColor="groupTableViewBackgroundColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Логин" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hjd-fx-Saz">
-                                        <rect key="frame" x="177.5" y="247" width="59" height="24"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="24" id="VEj-5I-zKR"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
-                                        <color key="textColor" systemColor="groupTableViewBackgroundColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="geek" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1fq-Ql-H8P">
-                                        <rect key="frame" x="132" y="283" width="150" height="34"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="150" id="OeY-KM-aMS"/>
-                                            <constraint firstAttribute="height" constant="34" id="jam-Au-03r"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Пароль" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z29-iv-u6a">
-                                        <rect key="frame" x="171.5" y="367" width="71.5" height="24"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="24" id="9MJ-0H-Bhq"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
-                                        <color key="textColor" systemColor="groupTableViewBackgroundColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="brains" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bVb-Io-XNS">
-                                        <rect key="frame" x="132" y="404" width="150" height="34"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="150" id="Ijz-LR-CWJ"/>
-                                            <constraint firstAttribute="height" constant="34" id="N96-h3-Jfk"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
-                                    </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A6N-qp-qsb">
-                                        <rect key="frame" x="177.5" y="479" width="59" height="36"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="36" id="9el-Uv-fu3"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
-                                        <state key="normal" title="Войти">
-                                            <color key="titleColor" systemColor="groupTableViewBackgroundColor"/>
-                                            <color key="titleShadowColor" systemColor="darkTextColor"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="loginButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="RZx-No-3Wm"/>
-                                            <segue destination="lp6-35-bEz" kind="presentation" modalPresentationStyle="fullScreen" id="IE0-UE-IPe"/>
-                                        </connections>
-                                    </button>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Axc-si-XgP" customClass="LoadingDots" customModule="GB_Vkontakte_AlexeyZhadaev" customModuleProvider="target">
-                                        <rect key="frame" x="167" y="451" width="80" height="20"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="20" id="lGR-0g-MwJ"/>
-                                        </constraints>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="colorOfDots">
-                                                <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </view>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstItem="hjd-fx-Saz" firstAttribute="top" secondItem="0wI-H4-IYm" secondAttribute="bottom" constant="111" id="0ol-9e-Glu"/>
-                                    <constraint firstItem="A6N-qp-qsb" firstAttribute="centerX" secondItem="F3o-c3-Cin" secondAttribute="centerX" id="3NO-Hq-6WI"/>
-                                    <constraint firstItem="bVb-Io-XNS" firstAttribute="centerX" secondItem="F3o-c3-Cin" secondAttribute="centerX" id="5kb-L5-Qlg"/>
-                                    <constraint firstItem="hjd-fx-Saz" firstAttribute="centerX" secondItem="F3o-c3-Cin" secondAttribute="centerX" id="7Pl-Tt-Bmj"/>
-                                    <constraint firstItem="A6N-qp-qsb" firstAttribute="top" secondItem="bVb-Io-XNS" secondAttribute="bottom" constant="41" id="AUI-3m-Ko5"/>
-                                    <constraint firstItem="z29-iv-u6a" firstAttribute="centerX" secondItem="F3o-c3-Cin" secondAttribute="centerX" id="EiP-vc-QHF"/>
-                                    <constraint firstAttribute="trailing" secondItem="0wI-H4-IYm" secondAttribute="trailing" constant="128" id="G5h-91-O3B"/>
-                                    <constraint firstItem="1fq-Ql-H8P" firstAttribute="top" secondItem="hjd-fx-Saz" secondAttribute="bottom" constant="12" id="PYK-NS-CP9"/>
-                                    <constraint firstItem="bVb-Io-XNS" firstAttribute="top" secondItem="z29-iv-u6a" secondAttribute="bottom" constant="13" id="Sq8-fA-99u"/>
-                                    <constraint firstItem="Axc-si-XgP" firstAttribute="top" secondItem="bVb-Io-XNS" secondAttribute="bottom" constant="13" id="Wwa-ms-eOI"/>
-                                    <constraint firstItem="Axc-si-XgP" firstAttribute="leading" secondItem="476-Yw-Hxa" secondAttribute="leading" constant="167" id="XSH-gw-GAr"/>
-                                    <constraint firstItem="1fq-Ql-H8P" firstAttribute="centerX" secondItem="F3o-c3-Cin" secondAttribute="centerX" id="YSc-50-xF6"/>
-                                    <constraint firstItem="9Bf-j1-2Zf" firstAttribute="trailing" secondItem="Axc-si-XgP" secondAttribute="trailing" constant="166.5" id="aTm-Zn-Nb8"/>
-                                    <constraint firstItem="0wI-H4-IYm" firstAttribute="centerX" secondItem="F3o-c3-Cin" secondAttribute="centerX" id="dNL-7T-Mgx"/>
-                                    <constraint firstAttribute="bottom" secondItem="A6N-qp-qsb" secondAttribute="bottom" constant="247" id="mXJ-GQ-TTR"/>
-                                    <constraint firstItem="z29-iv-u6a" firstAttribute="top" secondItem="1fq-Ql-H8P" secondAttribute="bottom" constant="50" id="qJa-pn-iHQ"/>
-                                    <constraint firstItem="0wI-H4-IYm" firstAttribute="top" secondItem="F3o-c3-Cin" secondAttribute="top" constant="100" id="xmo-sB-BPF"/>
-                                </constraints>
-                                <viewLayoutGuide key="contentLayoutGuide" id="9Bf-j1-2Zf"/>
-                                <viewLayoutGuide key="frameLayoutGuide" id="476-Yw-Hxa"/>
-                            </scrollView>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <constraints>
-                            <constraint firstItem="F3o-c3-Cin" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="1tN-cD-2Wc"/>
-                            <constraint firstItem="F3o-c3-Cin" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="2Sn-tL-s47"/>
-                            <constraint firstItem="F3o-c3-Cin" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="OZT-eA-4Ft"/>
-                            <constraint firstItem="F3o-c3-Cin" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="X1L-g6-ZM5"/>
+                            <constraint firstItem="rOV-iE-ecl" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="0b4-cc-cE2"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="rOV-iE-ecl" secondAttribute="bottom" id="DLE-lS-2W9"/>
+                            <constraint firstItem="rOV-iE-ecl" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="GQL-mx-mhV"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="rOV-iE-ecl" secondAttribute="trailing" id="Pkf-NI-z4h"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="startColor">
@@ -136,19 +44,12 @@
                         </userDefinedRuntimeAttributes>
                     </view>
                     <connections>
-                        <outlet property="loadingDots" destination="Axc-si-XgP" id="oTy-kA-R0v"/>
-                        <outlet property="loginButton" destination="A6N-qp-qsb" id="f3y-iJ-t92"/>
-                        <outlet property="loginInput" destination="1fq-Ql-H8P" id="Cih-U7-LP3"/>
-                        <outlet property="loginTitleView" destination="hjd-fx-Saz" id="N7T-cg-wcP"/>
-                        <outlet property="passwordInput" destination="bVb-Io-XNS" id="RAQ-Nf-PWW"/>
-                        <outlet property="passwordTitleView" destination="z29-iv-u6a" id="UJ2-6j-4OZ"/>
-                        <outlet property="titleView" destination="0wI-H4-IYm" id="Ac2-Za-du1"/>
-                        <outlet property="uiScrollView" destination="F3o-c3-Cin" id="6lU-mA-BcE"/>
+                        <outlet property="webView" destination="rOV-iE-ecl" id="bX3-HC-c7K"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-630.43478260869574" y="78.348214285714278"/>
+            <point key="canvasLocation" x="-859" y="75"/>
         </scene>
         <!--Группы-->
         <scene sceneID="7kZ-VV-cnw">
@@ -281,7 +182,7 @@
         <!--Друзья-->
         <scene sceneID="RvE-DZ-n5y">
             <objects>
-                <tableViewController id="bE2-Xu-qAs" customClass="MyFriendsTableViewController" customModule="GB_Vkontakte_AlexeyZhadaev" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="MyFriendsStoryboardKey" id="bE2-Xu-qAs" customClass="MyFriendsTableViewController" customModule="GB_Vkontakte_AlexeyZhadaev" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="6pZ-lJ-Yet">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -477,10 +378,10 @@
             </objects>
             <point key="canvasLocation" x="3876.811594202899" y="-477.45535714285711"/>
         </scene>
-        <!--Tabbar View Controller-->
+        <!--Tab Bar Controller-->
         <scene sceneID="wtQ-YQ-wtA">
             <objects>
-                <tabBarController modalPresentationStyle="fullScreen" id="lp6-35-bEz" customClass="TabbarViewController" customModule="GB_Vkontakte_AlexeyZhadaev" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabBarStoryboardKey" modalPresentationStyle="fullScreen" id="lp6-35-bEz" customClass="TabBarController" customModule="GB_Vkontakte_AlexeyZhadaev" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="sWf-M6-qWI"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="UcN-EV-jbS">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
@@ -594,21 +495,6 @@
         <image name="person.2.fill" catalog="system" width="128" height="80"/>
         <image name="person.3" catalog="system" width="128" height="62"/>
         <image name="suit.heart" catalog="system" width="128" height="109"/>
-        <systemColor name="darkTextColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="groupTableViewBackgroundColor">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="groupTableViewBackgroundColor">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="groupTableViewBackgroundColor">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="groupTableViewBackgroundColor">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
