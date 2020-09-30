@@ -26,11 +26,6 @@ class LoginFormController: UIViewController {
         authVk()
     }
     
-        override func viewDidAppear(_ animated: Bool) {
-            super.viewDidAppear(animated)
-    
-        }
-    
     private func authVk() {
         urlComponents.scheme = "https"
         urlComponents.host = "oauth.vk.com"
@@ -71,9 +66,9 @@ extension LoginFormController: WKNavigationDelegate {
             }
         
         let token = params["access_token"]
-        let session = Session.instance
-        session.token = token
-        debugPrint("Token is:\(session.token ?? "")")
+        Session.instance.token = token
+        
+        debugPrint("Token is:\(token ?? "")")
         
         decisionHandler(.cancel)
         
