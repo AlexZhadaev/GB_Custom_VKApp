@@ -22,8 +22,10 @@ class MyGroupsTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    func configure(for model: Group) {
+    func configure(for model: Item) {
         groupName.text = model.name
-        imageGroup.image = UIImage.init(named: model.groupAvatar)
+        let url = URL (string: model.avatar)
+        let data = try? Data(contentsOf: url!)
+        imageGroup.image = UIImage(data: data!)
     }
 }

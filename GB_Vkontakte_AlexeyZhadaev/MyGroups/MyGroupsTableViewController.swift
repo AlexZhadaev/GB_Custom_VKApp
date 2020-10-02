@@ -9,11 +9,16 @@
 import UIKit
 
 class MyGroupsTableViewController: UITableViewController {
-
-    var groups = [Group] ()
+    let groupService = GroupServices()
+    var groups = [Item] ()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        groupService.getGroupData() { [weak self] groups in
+                self?.groups = groups
+                self?.tableView?.reloadData()
+            }
+
     }
 
     // MARK: - Table view data source
@@ -28,25 +33,24 @@ class MyGroupsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MyGroupViewCell", for: indexPath) as! MyGroupsTableViewCell
-        let group = groups[indexPath.row]
-        cell.configure(for: group)
+        cell.configure(for: groups[indexPath.row])
         return cell
     }
     
-    @IBAction func addGroup(segue: UIStoryboardSegue) {
-        
-        if segue.identifier == "addGroup" {
-            guard let findGroupsTableViewController = segue.source as? FindGroupsTableViewController
-                else { return }
-            if let indexPath = findGroupsTableViewController.tableView.indexPathForSelectedRow {
-                let group = findGroupsTableViewController.groups[indexPath.row]
-                if !groups.contains(group) {
-                    groups.append(group)
-                    tableView.reloadData()
-                }
-            }
-        }
-    }
+//    @IBAction func addGroup(segue: UIStoryboardSegue) {
+//
+//        if segue.identifier == "addGroup" {
+//            guard let findGroupsTableViewController = segue.source as? FindGroupsTableViewController
+//                else { return }
+//            if let indexPath = findGroupsTableViewController.tableView.indexPathForSelectedRow {
+//                let group = findGroupsTableViewController.groups[indexPath.row]
+//                if !groups.contains(group) {
+//                    groups.append(group)
+//                    tableView.reloadData()
+//                }
+//            }
+//        }
+//    }
 
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
