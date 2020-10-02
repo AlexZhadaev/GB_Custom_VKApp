@@ -21,7 +21,7 @@ class MyFriendsTableViewController: UITableViewController {
         generateFriends()
         sortFriends()
         searchControllerSetup()
-        vkService.loadFriendsData()
+//        vkService.loadFriendsData()
         
 
 //        tapGesture.addTarget(self, action: #selector(taptap))
