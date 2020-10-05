@@ -20,6 +20,7 @@
 		3533F2072506BDEE001975AB /* LoadingDots.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3533F2062506BDEE001975AB /* LoadingDots.swift */; };
 		3544E8A5250E81D80062C20E /* CustomPushAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3544E8A4250E81D80062C20E /* CustomPushAnimator.swift */; };
 		35538FBC252A253E00D5957A /* PhotoServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35538FBB252A253E00D5957A /* PhotoServices.swift */; };
+		35538FC0252B19AA00D5957A /* SaveService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35538FBF252B19AA00D5957A /* SaveService.swift */; };
 		3554667724F6DAE700EAA7F4 /* CustomAvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3554667624F6DAE700EAA7F4 /* CustomAvatarView.swift */; };
 		3556A65524F3E98900BF6847 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3556A65424F3E98900BF6847 /* GradientView.swift */; };
 		3566402A2509519100744216 /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356640292509519100744216 /* GalleryViewController.swift */; };
@@ -56,6 +57,7 @@
 		3533F2062506BDEE001975AB /* LoadingDots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingDots.swift; sourceTree = "<group>"; };
 		3544E8A4250E81D80062C20E /* CustomPushAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPushAnimator.swift; sourceTree = "<group>"; };
 		35538FBB252A253E00D5957A /* PhotoServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoServices.swift; sourceTree = "<group>"; };
+		35538FBF252B19AA00D5957A /* SaveService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveService.swift; sourceTree = "<group>"; };
 		3554667624F6DAE700EAA7F4 /* CustomAvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAvatarView.swift; sourceTree = "<group>"; };
 		3556A65424F3E98900BF6847 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		356640292509519100744216 /* GalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 				3504C73B252648460087B7CF /* GroupServices.swift */,
 				3504C737252646760087B7CF /* UserServices.swift */,
 				35538FBB252A253E00D5957A /* PhotoServices.swift */,
+				35538FBF252B19AA00D5957A /* SaveService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -331,6 +334,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35538FC0252B19AA00D5957A /* SaveService.swift in Sources */,
 				35538FBC252A253E00D5957A /* PhotoServices.swift in Sources */,
 				350B467324DC6F1D00910FCE /* FriendPhotoCollectionViewCell.swift in Sources */,
 				3556A65524F3E98900BF6847 /* GradientView.swift in Sources */,
