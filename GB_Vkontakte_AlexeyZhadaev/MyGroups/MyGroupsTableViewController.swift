@@ -10,7 +10,7 @@ import UIKit
 
 class MyGroupsTableViewController: UITableViewController {
     let groupService = GroupServices()
-    let photoService = PhotoItem()
+    let photoService = PhotoService()
     var photos = [PhotoItem] ()
     var groups = [Item] ()
     
@@ -20,9 +20,7 @@ class MyGroupsTableViewController: UITableViewController {
                 self?.groups = groups
                 self?.tableView?.reloadData()
             }
-        photoService.getPhotoData() { [weak self] photos in
-            self?.photos = photos
-        }
+        photoService.getPhotoData()
     }
 
     // MARK: - Table view data source
