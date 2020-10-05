@@ -20,12 +20,12 @@ class MyFriendsTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    func configure(for model: Friend) {
-        friendName.text = model.name
-        customAvatarView.avatarImage.image = UIImage.init(named: model.friendPhoto)
+    func configure(for model: UserItem) {
+        friendName.text = "\(model.firstname) \(model.lastname)"
+        customAvatarView.avatarImage.load(url: URL(string: model.avatar)!)
         customAvatarView.configure()
     }
-
+    
     @IBAction func animationButton(_ sender: Any) {
         let animation = CASpringAnimation(keyPath: "transform.scale")
         animation.fromValue = 0.6

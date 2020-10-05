@@ -13,4 +13,10 @@ class FriendPhotoCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var photo: UIImageView!
     @IBOutlet weak var likeCustomController: LikeCustomControlUIView!
 
+//    func configure(for model: Item) {
+//        groupName.text = model.name
+//        let url = URL (string: model.avatar)
+//        let data = try? Data(contentsOf: url!)
+//        imageGroup.image = UIImage(data: data!)
+//    }
 }

@@ -49,8 +49,9 @@ struct UserItem: Codable {
     let firstname: String
     let lastname: String
     let avatar: String
+    let id: Int
     
     private enum CodingKeys: String, CodingKey {
-        case firstname = "first_name", lastname = "last_name", avatar = "photo_100"
+        case firstname = "first_name", lastname = "last_name", avatar = "photo_100", id = "id"
     }
 }
