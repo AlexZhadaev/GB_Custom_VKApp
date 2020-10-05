@@ -9,22 +9,22 @@
 import UIKit
 
 class MyFriendsTableViewController: UITableViewController {
-    let vkService = VkFriendsService()
-    var friends: [Friend] = []
-    var friendDictionary = [String: [Friend]]()
+    let userService = UserServices()
+    var friends = [UserItem] ()
+    var friendDictionary = [String: [UserItem]]()
     var friendSection = [String]()
-    var filteredFriends: [Friend] = []
+    var filteredFriends: [UserItem] = []
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        generateFriends()
-        sortFriends()
-        searchControllerSetup()
-//        vkService.loadFriendsData()
+        userService.getUserData() { [weak self] friends in
+            self?.friends = friends
+            self?.sortFriends()
+            self?.searchControllerSetup()
+            self?.tableView?.reloadData()
+        }
         
-
-//        tapGesture.addTarget(self, action: #selector(taptap))
     }
     
     let searchController = UISearchController(searchResultsController: nil)
@@ -49,37 +49,9 @@ class MyFriendsTableViewController: UITableViewController {
         searchController.searchBar.delegate = self
     }
     
-    private func generateFriends() {
-        let friend1 = Friend(name: "Гарольд Скрывающий Боль", friendPhoto: "avatarHarold", friendGallery: ["harold1","harold2","harold3","harold4","harold5","harold6","harold7","harold8","harold9","harold10","harold11"])
-        let friend2 = Friend(name: "Александр Невский", friendPhoto: "avatarNevsky", friendGallery: ["nevsky1", "nevsky2", "nevsky3", "nevsky4", "nevsky5"])
-        let friend3 = Friend(name: "Малыш Йода", friendPhoto: "avatarYoda", friendGallery: ["yoda1", "yoda2", "yoda3", "yoda4", "yoda5", "yoda6", "yoda7", "yoda8", "yoda9"])
-        let friend4 = Friend(name: "Александр Пистолетов", friendPhoto: "noAvatar", friendGallery: ["noAvatar", "noAvatar"])
-        let friend5 = Friend(name: "Гейб Ньюэлл", friendPhoto: "noAvatar", friendGallery: ["noAvatar", "noAvatar", "nevsky1"])
-        let friend6 = Friend(name: "Марк Дакаскос", friendPhoto: "noAvatar", friendGallery: ["noAvatar", "noAvatar", "nevsky2"])
-        let friend7 = Friend(name: "Сарик Андреасян", friendPhoto: "noAvatar", friendGallery: ["noAvatar", "noAvatar", "nevsky3"])
-        let friend8 = Friend(name: "Оливье Грюнер", friendPhoto: "noAvatar", friendGallery: ["noAvatar", "noAvatar", "nevsky4"])
-        let friend9 = Friend(name: "Каспер Ван Дин", friendPhoto: "noAvatar", friendGallery: ["noAvatar", "noAvatar", "nevsky5"])
-        let friend10 = Friend(name: "Дон Уилсон", friendPhoto: "noAvatar", friendGallery: ["noAvatar", "nevsky1", "nevsky5"])
-        let friend11 = Friend(name: "Маттиас Хьюз", friendPhoto: "noAvatar", friendGallery: ["noAvatar", "nevsky2", "nevsky3"])
-        
-        friends.append(friend1)
-        friends.append(friend2)
-        friends.append(friend3)
-        friends.append(friend4)
-        friends.append(friend5)
-        friends.append(friend6)
-        friends.append(friend7)
-        friends.append(friend8)
-        friends.append(friend9)
-        friends.append(friend10)
-        friends.append(friend11)
-        
-        tableView.reloadData()
-    }
-    
     private func sortFriends() {
         for friend in friends {
-            let friendKey = "\(friend.name[friend.name.startIndex])".uppercased()
+            let friendKey = "\(friend.firstname[friend.firstname.startIndex])".uppercased()
             if var friendValues = friendDictionary[friendKey] {
                 friendValues.append(friend)
                 friendDictionary[friendKey] = friendValues
@@ -136,46 +108,28 @@ class MyFriendsTableViewController: UITableViewController {
     }
     // MARK: - TableView delegate
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedSection = friendSection[indexPath.section]
-        let selectedFriend = friendDictionary[selectedSection]
-        let friendPhotoController = storyboard?.instantiateViewController(identifier: "PhotoGalleryStoryboardKey") as! FriendPhotoCollectionViewController
-        friendPhotoController.friend = selectedFriend?[indexPath.row]
-        self.show(friendPhotoController, sender: nil)
-    }
+    //    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    //        let selectedSection = friendSection[indexPath.section]
+    //        let selectedFriend = friendDictionary[selectedSection]
+    //        let friendPhotoController = storyboard?.instantiateViewController(identifier: "PhotoGalleryStoryboardKey") as! FriendPhotoCollectionViewController
+    //        friendPhotoController.friend = selectedFriend?[indexPath.row]
+    //        self.show(friendPhotoController, sender: nil)
+    //    }
     
     // MARK: - Search
     func filterContentForSearchText(_ searchText: String) {
-        filteredFriends = friends.filter { (friend: Friend) -> Bool in
+        filteredFriends = friends.filter { (friend: UserItem) -> Bool in
             
             if isSearchBarEmpty {
                 return false
             } else {
-                return friend.name.lowercased()
+                return friend.firstname.lowercased()
                     .contains(searchText.lowercased())
             }
         }
         
         tableView.reloadData()
     }
-    //MARK:- Gestures
-//    @objc func taptap(recognizer: UITapGestureRecognizer) {
-//        if recognizer.state == UIGestureRecognizer.State.ended {
-//            let tapLocation = recognizer.location(in: self.tableView)
-//            if let tapIndexPath = self.tableView.indexPathForRow(at: tapLocation) {
-//                if let tappedCell = self.tableView.cellForRow(at: tapIndexPath) as? MyFriendsTableViewCell {
-//                    let animation = CASpringAnimation(keyPath: "transform.scale")
-//                    animation.fromValue = 0.6
-//                    animation.toValue = 1
-//                    animation.stiffness = 200
-//                    animation.mass = 2
-//                    animation.duration = 0.8
-//                    tappedCell.customAvatarView.layer.add(animation, forKey: nil)
-//
-//                }
-//            }
-//        }
-//    }
     
 }
 //MARK:- Extensions

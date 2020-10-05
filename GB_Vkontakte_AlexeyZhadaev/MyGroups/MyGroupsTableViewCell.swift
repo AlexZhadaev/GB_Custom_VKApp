@@ -13,6 +13,7 @@ class MyGroupsTableViewCell: UITableViewCell {
     
     @IBOutlet weak var imageGroup: UIImageView!
     @IBOutlet weak var groupName: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         imageGroup.layer.cornerRadius = imageGroup.frame.size.height/2
@@ -24,8 +25,6 @@ class MyGroupsTableViewCell: UITableViewCell {
     
     func configure(for model: Item) {
         groupName.text = model.name
-        let url = URL (string: model.avatar)
-        let data = try? Data(contentsOf: url!)
-        imageGroup.image = UIImage(data: data!)
+        imageGroup.load(url: URL(string: model.avatar)!)
     }
 }

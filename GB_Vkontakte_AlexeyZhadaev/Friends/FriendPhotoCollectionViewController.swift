@@ -9,23 +9,26 @@
 import UIKit
 
 class FriendPhotoCollectionViewController: UICollectionViewController {
-    
-    var friend: Friend!
-    
-    var photos = [UIImage]()
-    
+//    let photoService = PhotoItem()
+//    var photos = [PhotoItem] ()
+//
+//    var friend: PhotoItem!
+
     var selectedIndexPath: IndexPath!
     
-    fileprivate func createFriendGallery() {
-        title = friend.name
-        for image in friend.friendGallery {
-            photos.append(UIImage(named: image)!)
-        }
-    }
+//    fileprivate func createFriendGallery() {
+//        title = "\(friend.firstname) \(friend.lastname)"
+//        for image in friend.friendGallery {
+//            photos.append(UIImage(named: image)!)
+//        }
+//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        createFriendGallery()
+//        photoService.getPhotoData() { [weak self] photos in
+//                self?.photos = photos
+//                self?.collectionView?.reloadData()
+//        }
     }
     
     
@@ -41,22 +44,22 @@ class FriendPhotoCollectionViewController: UICollectionViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return friend.friendGallery.count
+        return 10
     }
     
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FriendPhotoCell", for: indexPath) as! FriendPhotoCollectionViewCell
-        cell.photo.image = UIImage(named: friend.friendGallery[indexPath.row])
-        return cell
-    }
+//    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FriendPhotoCell", for: indexPath) as! FriendPhotoCollectionViewCell
+//        cell.photo.image = UIImage(named: friend.friendGallery[indexPath.row])
+//        return cell
+//    }
     
-    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let galleryViewController = storyboard?.instantiateViewController(identifier: "GalleryViewControllerKey") as! GalleryViewController
-        self.selectedIndexPath = indexPath
-        galleryViewController.photos = self.photos
-        galleryViewController.currentIndex = self.selectedIndexPath.row
-        galleryViewController.title = self.title
-        self.show(galleryViewController, sender: nil)
-    }
+//    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        let galleryViewController = storyboard?.instantiateViewController(identifier: "GalleryViewControllerKey") as! GalleryViewController
+//        self.selectedIndexPath = indexPath
+//        galleryViewController.photos = self.photos
+//        galleryViewController.currentIndex = self.selectedIndexPath.row
+//        galleryViewController.title = self.title
+//        self.show(galleryViewController, sender: nil)
+//    }
     
 }

@@ -22,8 +22,8 @@ class FindGroupsTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    func configure(for model: Group) {
+    func configure(for model: Item) {
         groupName.text = model.name
-        imageGroup.image = UIImage.init(named: model.groupAvatar)
+        imageGroup.load(url: URL(string: model.avatar)!)
     }
 }
