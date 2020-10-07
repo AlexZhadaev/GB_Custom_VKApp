@@ -9,69 +9,50 @@
 import Foundation
 import Alamofire
 
-class PhotoItem: Decodable {
-    var id = Session.instance.userId
-    dynamic var url = ""
-    dynamic var userLikes = 0
-    dynamic var likesCount = 0
-    
-        convenience required init(from decoder: Decoder) throws {
-        self.init()
-        let values = try decoder.container(keyedBy: CodingKeys.self)
-        let responseValues = try values.nestedContainer(keyedBy: ResponseKeys.self, forKey: .response)
-        var itemsValues = try responseValues.nestedUnkeyedContainer(forKey: .items)
-        let firstItemsValues = try itemsValues.nestedContainer(keyedBy: ItemsKeys.self)
-        var sizesValues = try firstItemsValues.nestedUnkeyedContainer(forKey: .sizes)
-        let firstSizesValues = try sizesValues.nestedContainer(keyedBy: SizesKeys.self)
-        self.url = try firstSizesValues.decode(String.self, forKey: .url)
-        let likesValues = try firstItemsValues.nestedContainer(keyedBy: LikesKeys.self, forKey: .likes)
-        self.userLikes = try likesValues.decode(Int.self, forKey: .userLikes)
-        self.likesCount = try likesValues.decode(Int.self, forKey: .likesCount)
-    }
-
-
-    enum CodingKeys: String, CodingKey {
-        case response
-    }
-
-    enum ResponseKeys: String, CodingKey {
-        case items
-    }
-
-    enum ItemsKeys: String, CodingKey {
-        case sizes
-        case likes
-    }
-
-    enum SizesKeys: String, CodingKey {
-        case url = "url"
-    }
-
-    enum LikesKeys: String, CodingKey {
-        case userLikes = "user_likes"
-        case likesCount = "count"
-    }
-
+struct PhotoService {
     func getPhotoData(completion: @escaping ([PhotoItem]) -> Void) {
-        let accessToken = Session.instance.token
-        debugPrint("PhotoServisesToken: \(accessToken ?? "")")
-        AF.request("https://api.vk.com/method/photos.getAll?owner_id=1207149&extended=1&count=2&photo_sizes=1&access_token=\(accessToken ?? "")&v=5.124)").responseData { (response) in
-            let data = response.data!
+            let id = Session.instance.userId
+            let accessToken = Session.instance.token
+            debugPrint("PhotoServisesToken: \(accessToken ?? "")")
+        debugPrint("PhotoServisesId: \(id ?? 0)")
+        AF.request("https://api.vk.com/method/photos.getAll?owner_id=\(id ?? 0)&extended=1&count=20&photo_sizes=1&access_token=\(accessToken ?? "")&v=5.124)").responseData { (response) in
+                let data = response.data!
 
-            let decoder = JSONDecoder()
+                let decoder = JSONDecoder()
 
-            let photoData = try? decoder.decode(Response.self, from: data).items
-            debugPrint("Photo data: \(photoData!)")
-            completion(photoData!)
+                let photoData = try? decoder.decode(PhotoModel.self, from: data).response.items
+                debugPrint("Photo data: \(photoData!)")
+                completion(photoData!)
+            }
         }
-    }
-    
 }
 
-class Response: Decodable {
+struct PhotoModel: Decodable {
+    let response: Response
+}
+
+struct Response: Decodable {
     let items: [PhotoItem]
 }
 
-class Items: Decodable {
-    let sizes: [PhotoItem]
+struct PhotoItem: Decodable {
+    let sizes: [Size]
+    var likes: Likes
+
+    enum CodingKeys: String, CodingKey {
+        case sizes, likes
+    }
+}
+
+struct Likes: Decodable {
+    var userLikes, count: Int
+
+    enum CodingKeys: String, CodingKey {
+        case userLikes = "user_likes"
+        case count
+    }
+}
+
+struct Size: Decodable {
+    let url: String
 }

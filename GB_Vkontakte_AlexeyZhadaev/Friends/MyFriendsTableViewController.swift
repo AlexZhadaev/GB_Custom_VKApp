@@ -108,13 +108,14 @@ class MyFriendsTableViewController: UITableViewController {
     }
     // MARK: - TableView delegate
     
-    //    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    //        let selectedSection = friendSection[indexPath.section]
-    //        let selectedFriend = friendDictionary[selectedSection]
-    //        let friendPhotoController = storyboard?.instantiateViewController(identifier: "PhotoGalleryStoryboardKey") as! FriendPhotoCollectionViewController
-    //        friendPhotoController.friend = selectedFriend?[indexPath.row]
-    //        self.show(friendPhotoController, sender: nil)
-    //    }
+        override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+            let selectedSection = friendSection[indexPath.section]
+            let selectedFriend = friendDictionary[selectedSection]
+            let friendPhotoController = storyboard?.instantiateViewController(identifier: "PhotoGalleryStoryboardKey") as! FriendPhotoCollectionViewController
+            friendPhotoController.friend = selectedFriend?[indexPath.row]
+            Session.instance.userId = selectedFriend?[indexPath.row].id
+            self.show(friendPhotoController, sender: nil)
+        }
     
     // MARK: - Search
     func filterContentForSearchText(_ searchText: String) {
