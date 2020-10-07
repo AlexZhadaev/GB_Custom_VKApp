@@ -10,8 +10,6 @@ import UIKit
 
 class MyGroupsTableViewController: UITableViewController {
     let groupService = GroupServices()
-    let photoService = PhotoService()
-    var photos = [PhotoItem] ()
     var groups = [Item] ()
     
     override func viewDidLoad() {
@@ -20,7 +18,6 @@ class MyGroupsTableViewController: UITableViewController {
                 self?.groups = groups
                 self?.tableView?.reloadData()
             }
-        photoService.getPhotoData()
     }
 
     // MARK: - Table view data source

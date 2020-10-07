@@ -10,18 +10,19 @@ import Foundation
 import Alamofire
 
 struct PhotoService {
-    func getPhotoData() {
+    func getPhotoData(completion: @escaping ([PhotoItem]) -> Void) {
             let id = Session.instance.userId
             let accessToken = Session.instance.token
             debugPrint("PhotoServisesToken: \(accessToken ?? "")")
-            AF.request("https://api.vk.com/method/photos.getAll?owner_id=1207149&extended=1&count=2&photo_sizes=1&access_token=\(accessToken ?? "")&v=5.124)").responseData { (response) in
+        debugPrint("PhotoServisesId: \(id ?? 0)")
+        AF.request("https://api.vk.com/method/photos.getAll?owner_id=\(id ?? 0)&extended=1&count=20&photo_sizes=1&access_token=\(accessToken ?? "")&v=5.124)").responseData { (response) in
                 let data = response.data!
 
                 let decoder = JSONDecoder()
 
-                let photoData = try? decoder.decode(PhotoModel.self, from: data)
+                let photoData = try? decoder.decode(PhotoModel.self, from: data).response.items
                 debugPrint("Photo data: \(photoData!)")
-
+                completion(photoData!)
             }
         }
 }
@@ -36,7 +37,7 @@ struct Response: Decodable {
 
 struct PhotoItem: Decodable {
     let sizes: [Size]
-    let likes: Likes
+    var likes: Likes
 
     enum CodingKeys: String, CodingKey {
         case sizes, likes
@@ -44,7 +45,7 @@ struct PhotoItem: Decodable {
 }
 
 struct Likes: Decodable {
-    let userLikes, count: Int
+    var userLikes, count: Int
 
     enum CodingKeys: String, CodingKey {
         case userLikes = "user_likes"
