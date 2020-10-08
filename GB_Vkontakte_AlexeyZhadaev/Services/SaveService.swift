@@ -8,13 +8,21 @@
 
 import Foundation
 
-class SaveService {
+class LocalDataStore {
+    
+//    func save(value: String, for key: String) {
+//        UserDefaults.standard.setValue(value, forKey: key)
+//    }
+//
+//    func read(for key: String) -> String {
+//        return UserDefaults.standard.string(forKey: key) ?? ""
+//    }
     
     func save(value: String, for key: String) {
-        UserDefaults.standard.setValue("Test", forKey: "my_key")
+        UserDefaults.standard.setValue(value, forKey: key)
     }
     
     func read(for key: String) -> String {
-        return UserDefaults.standard.string(forKey: "my_key")
+        return UserDefaults.standard.string(forKey: key) ?? ""
     }
 }
