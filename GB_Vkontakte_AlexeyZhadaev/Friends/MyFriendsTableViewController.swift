@@ -9,7 +9,7 @@
 import UIKit
 
 class MyFriendsTableViewController: UITableViewController {
-    let userService = UserServices()
+    let userService = User()
     var friends = [UserItem] ()
     var friendDictionary = [String: [UserItem]]()
     var friendSection = [String]()

@@ -9,9 +9,9 @@
 import UIKit
 
 class MyGroupsTableViewController: UITableViewController {
-    let groupService = GroupServices()
-    let photoService = PhotoItem()
-    var photos = [PhotoItem] ()
+    let groupService = Group()
+    let photoService = Photo()
+    var photos = [Photo] ()
     var groups = [Item] ()
     
     override func viewDidLoad() {
