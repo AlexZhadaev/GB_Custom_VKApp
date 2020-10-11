@@ -9,7 +9,8 @@
 import UIKit
 
 class MyGroupsTableViewController: UITableViewController {
-    let groupService = GroupServices()
+    let groupService = Group()
+    let saveService = CoreDataService()
     var groups = [Item] ()
     
     override func viewDidLoad() {
@@ -18,6 +19,12 @@ class MyGroupsTableViewController: UITableViewController {
                 self?.groups = groups
                 self?.tableView?.reloadData()
             }
+        saveService.deleteEntityList(name: "Group")
+        saveService.saveGroup(name: "Wrestling Academy", avatar: "Avatar")
+        let groupList = saveService.readGroupList()
+        for group in groupList {
+            debugPrint(group.avatar, group.name)
+        }
     }
 
     // MARK: - Table view data source

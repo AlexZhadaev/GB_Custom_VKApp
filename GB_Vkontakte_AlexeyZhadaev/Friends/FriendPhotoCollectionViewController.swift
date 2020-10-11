@@ -9,7 +9,7 @@
 import UIKit
 
 class FriendPhotoCollectionViewController: UICollectionViewController {
-    let photoService = PhotoService()
+    let photoService = Photo()
     var photos = [PhotoItem] ()
     var friend: UserItem!
     
@@ -18,7 +18,7 @@ class FriendPhotoCollectionViewController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "\(friend.firstname) \(friend.lastname)"
+        title = "\(friend.firstName) \(friend.lastName)"
         photoService.getPhotoData() { [weak self] photos in
                 self?.photos = photos
                 self?.collectionView?.reloadData()

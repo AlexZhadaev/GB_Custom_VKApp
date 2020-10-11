@@ -9,7 +9,8 @@
 import UIKit
 
 class MyFriendsTableViewController: UITableViewController {
-    let userService = UserServices()
+    let userService = User()
+    let saveService = CoreDataService()
     var friends = [UserItem] ()
     var friendDictionary = [String: [UserItem]]()
     var friendSection = [String]()
@@ -24,7 +25,12 @@ class MyFriendsTableViewController: UITableViewController {
             self?.searchControllerSetup()
             self?.tableView?.reloadData()
         }
-        
+        saveService.deleteEntityList(name: "User")
+        saveService.saveUser(firstName: "Trener", lastName: "Trenner", avatar: "Avatar", id: 5463)
+        let userList = saveService.readUserList()
+        for user in userList {
+            debugPrint(user.firstName, user.lastName)
+        }
     }
     
     let searchController = UISearchController(searchResultsController: nil)
@@ -51,7 +57,7 @@ class MyFriendsTableViewController: UITableViewController {
     
     private func sortFriends() {
         for friend in friends {
-            let friendKey = "\(friend.firstname[friend.firstname.startIndex])".uppercased()
+            let friendKey = "\(friend.firstName[friend.firstName.startIndex])".uppercased()
             if var friendValues = friendDictionary[friendKey] {
                 friendValues.append(friend)
                 friendDictionary[friendKey] = friendValues
@@ -124,7 +130,7 @@ class MyFriendsTableViewController: UITableViewController {
             if isSearchBarEmpty {
                 return false
             } else {
-                return friend.firstname.lowercased()
+                return friend.firstName.lowercased()
                     .contains(searchText.lowercased())
             }
         }
