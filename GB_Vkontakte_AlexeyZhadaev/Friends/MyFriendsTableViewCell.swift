@@ -21,7 +21,7 @@ class MyFriendsTableViewCell: UITableViewCell {
     }
     
     func configure(for model: UserItem) {
-        friendName.text = "\(model.firstname) \(model.lastname)"
+        friendName.text = "\(model.firstName) \(model.lastName)"
         customAvatarView.avatarImage.load(url: URL(string: model.avatar)!)
         customAvatarView.configure()
     }

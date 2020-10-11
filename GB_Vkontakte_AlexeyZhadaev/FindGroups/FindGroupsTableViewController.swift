@@ -10,7 +10,7 @@ import UIKit
 
 class FindGroupsTableViewController: UITableViewController {
 
-    let groupService = GroupServices()
+    let groupService = Group()
     var groups = [Item] ()
     
     override func viewDidLoad() {
