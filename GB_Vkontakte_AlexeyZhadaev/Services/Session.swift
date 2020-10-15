@@ -13,7 +13,7 @@ class Session {
     static let instance = Session()
     
     var token: String?
-    var userId: Int?
+    var userId: Int64?
     
     private init() {}
 }

@@ -13,22 +13,25 @@ import Alamofire
 
 @objc(Photo)
 public class Photo: NSManagedObject {
-
-    func getPhotoData(completion: @escaping ([PhotoItem]) -> Void) {
-            let id = Session.instance.userId
-            let accessToken = Session.instance.token
-            debugPrint("PhotoServisesToken: \(accessToken ?? "")")
+    let savePhotoService = CoreDataService()
+    
+    func getPhotoData() {
+        let id = Session.instance.userId
+        let accessToken = Session.instance.token
+        debugPrint("PhotoServisesToken: \(accessToken ?? "")")
         debugPrint("PhotoServisesId: \(id ?? 0)")
         AF.request("https://api.vk.com/method/photos.getAll?owner_id=\(id ?? 0)&extended=1&count=20&photo_sizes=1&access_token=\(accessToken ?? "")&v=5.124)").responseData { (response) in
-                let data = response.data!
-
-                let decoder = JSONDecoder()
-
-                let photoData = try? decoder.decode(PhotoModel.self, from: data).response.items
-                debugPrint("Photo data: \(photoData!)")
-                completion(photoData!)
+            let data = response.data!
+            
+            let decoder = JSONDecoder()
+            
+            let photoData = try! decoder.decode(PhotoModel.self, from: data).response.items
+            self.savePhotoService.deleteEntityList(entity: "Photo")
+            for item in photoData {
+                self.savePhotoService.savePhoto(userLikes: item.likes.userLikes, likesCount: item.likes.count, url: item.sizes[4].url)
             }
         }
+    }
 }
 
 struct PhotoModel: Decodable {

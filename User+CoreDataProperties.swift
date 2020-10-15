@@ -20,7 +20,7 @@ extension User {
     @NSManaged public var firstName: String?
     @NSManaged public var lastName: String?
     @NSManaged public var avatar: String?
-    @NSManaged public var id: Int16
+    @NSManaged public var id: Int64
 
 }
 

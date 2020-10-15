@@ -13,7 +13,9 @@ import Alamofire
 
 @objc(User)
 public class User: NSManagedObject {
-    func getUserData(completion: @escaping ([UserItem]) -> Void) {
+    let saveUserService = CoreDataService()
+    
+    func getUserData() {
         let accessToken = Session.instance.token
         debugPrint("UserServisesToken: \(accessToken ?? "")")
         AF.request("https://api.vk.com/method/friends.get?fields=bdate,photo_100&access_token=\(accessToken ?? "")&v=5.124)").responseData { (response) in
@@ -21,10 +23,11 @@ public class User: NSManagedObject {
             
             let decoder = JSONDecoder()
             
-            let userData = try? decoder.decode(UserModel.self, from: data).items
-            
-            debugPrint("UserServises data: \(userData!)")
-            completion(userData!)
+            let userData = try! decoder.decode(UserModel.self, from: data).items
+            self.saveUserService.deleteEntityList(entity: "User")
+            for item in userData {
+                self.saveUserService.saveUser(firstName: item.firstName, lastName: item.lastName, avatar: item.avatar, id: item.id)
+            }
         }
     }
 }

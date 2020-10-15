@@ -13,8 +13,9 @@ import Alamofire
 
 @objc(Group)
 public class Group: NSManagedObject {
+    let saveGroupService = CoreDataService()
     
-    func getGroupData(completion: @escaping ([Item]) -> Void) {
+    func getGroupData() {
         let accessToken = Session.instance.token
         debugPrint("GroupToken: \(accessToken ?? "")")
         AF.request("https://api.vk.com/method/groups.get?extended=1&fields=name,photo_100&access_token=\(accessToken ?? "")&v=5.124)").responseData { (response) in
@@ -22,13 +23,15 @@ public class Group: NSManagedObject {
             
             let decoder = JSONDecoder()
             
-            let groupData = try? decoder.decode(GroupModel.self, from: data).items
-            debugPrint(groupData as Any)
-            completion(groupData!)
+            let groupData = try! decoder.decode(GroupModel.self, from: data).items
+            self.saveGroupService.deleteEntityList(entity: "Group")
+            for item in groupData {
+                self.saveGroupService.saveGroup(name: item.name, avatar: item.avatar)
+            }
         }
     }
     
-    func getSearchGroups(completion: @escaping ([Item]) -> Void) {
+    func getSearchGroups() {
         let accessToken = Session.instance.token
         debugPrint("GroupToken: \(accessToken ?? "")")
         AF.request("https://api.vk.com/method/groups.search?q=music&type=group&access_token=\(accessToken ?? "")&v=5.124)").responseData { (response) in
@@ -36,9 +39,11 @@ public class Group: NSManagedObject {
             
             let decoder = JSONDecoder()
             
-            let groupData = try? decoder.decode(GroupModel.self, from: data).items
-            debugPrint(groupData as Any)
-            completion(groupData!)
+            let groupData = try! decoder.decode(GroupModel.self, from: data).items
+            self.saveGroupService.deleteEntityList(entity: "Group")
+            for item in groupData {
+                self.saveGroupService.saveGroup(name: item.name, avatar: item.avatar)
+            }
         }
     }
 }
