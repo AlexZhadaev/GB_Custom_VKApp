@@ -11,8 +11,7 @@ import CoreData
 
 class CoreDataService {
     
-    let storeStack = CoreDataStack(modelName: "GB_Vkontakte_AlexeyZhadaev")
-    
+    lazy var storeStack = CoreDataStack(modelName: "GB_Vkontakte_AlexeyZhadaev")
     
     func saveUser(firstName: String, lastName: String, avatar: String, id: Int) {
         let context = storeStack.context
@@ -26,8 +25,9 @@ class CoreDataService {
     
     func readUserList(completion: @escaping ([User]) -> Void) {
         let context = storeStack.context
-        
-        completion (try! context.fetch(User.fetchRequest()) as! [User])
+        let fetchRequest: NSFetchRequest<User> = User.fetchRequest()
+        let objects = try! context.fetch(fetchRequest)
+        completion (objects)
     }
     
     func deleteEntityList(entity: String) {
@@ -48,8 +48,9 @@ class CoreDataService {
     
     func readGroupList(completion: @escaping ([Group]) -> Void) {
         let context = storeStack.context
-        
-        completion (try! context.fetch(Group.fetchRequest()) as! [Group])
+        let fetchRequest: NSFetchRequest<Group> = Group.fetchRequest()
+        let objects = try! context.fetch(fetchRequest)
+        completion (objects)
     }
     
     func savePhoto(userLikes: Int, likesCount: Int, url: String) {
@@ -63,7 +64,8 @@ class CoreDataService {
     
     func readPhotoList(completion: @escaping ([Photo]) -> Void) {
         let context = storeStack.context
-        
-        completion (try! context.fetch(Photo.fetchRequest()) as! [Photo])
+        let fetchRequest: NSFetchRequest<Photo> = Photo.fetchRequest()
+        let objects = try! context.fetch(fetchRequest)
+        completion (objects)
     }
 }

@@ -16,7 +16,7 @@ class CoreDataStack {
         self.modelName = modelName
     }
     
-    lazy var persistentContainer: NSPersistentContainer = {
+    private lazy var persistentContainer: NSPersistentContainer = {
         
         let container = NSPersistentContainer(name: self.modelName)
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
@@ -27,22 +27,23 @@ class CoreDataStack {
         })
         return container
     }()
-
-    var context: NSManagedObjectContext {
+    
+    lazy var context: NSManagedObjectContext = {
         return persistentContainer.viewContext
-    }
+    }()
     
     // MARK: - Core Data Saving support
-
+    
     func saveContext () {
         let context = persistentContainer.viewContext
         if context.hasChanges {
             do {
                 try context.save()
             } catch {
-                
+                context.rollback()
                 let nserror = error as NSError
                 fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+                
             }
         }
     }
