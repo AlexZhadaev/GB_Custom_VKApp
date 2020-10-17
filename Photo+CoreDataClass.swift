@@ -20,7 +20,7 @@ public class Photo: NSManagedObject {
         let accessToken = Session.instance.token
         debugPrint("PhotoServisesToken: \(accessToken ?? "")")
         debugPrint("PhotoServisesId: \(id ?? 0)")
-        AF.request("https://api.vk.com/method/photos.getAll?owner_id=\(id ?? 0)&extended=1&count=20&photo_sizes=1&access_token=\(accessToken ?? "")&v=5.124)").responseData { (response) in
+        AF.request("https://api.vk.com/method/photos.getAll?owner_id=\(id ?? 0)&extended=1&count=20&photo_sizes=1&access_token=\(accessToken ?? "")&v=5.124").responseData { (response) in
             let data = response.data!
             
             let decoder = JSONDecoder()

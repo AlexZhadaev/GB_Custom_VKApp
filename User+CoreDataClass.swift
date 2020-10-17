@@ -18,7 +18,7 @@ public class User: NSManagedObject {
     func getUserData() {
         let accessToken = Session.instance.token
         debugPrint("UserServisesToken: \(accessToken ?? "")")
-        AF.request("https://api.vk.com/method/friends.get?fields=bdate,photo_100&access_token=\(accessToken ?? "")&v=5.124)").responseData { (response) in
+        AF.request("https://api.vk.com/method/friends.get?fields=bdate,photo_100&access_token=\(accessToken ?? "")&v=5.124").responseData { (response) in
             let data = response.data!
             
             let decoder = JSONDecoder()

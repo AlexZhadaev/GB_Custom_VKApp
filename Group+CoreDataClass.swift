@@ -18,13 +18,14 @@ public class Group: NSManagedObject {
     func getGroupData() {
         let accessToken = Session.instance.token
         debugPrint("GroupToken: \(accessToken ?? "")")
-        AF.request("https://api.vk.com/method/groups.get?extended=1&fields=name,photo_100&access_token=\(accessToken ?? "")&v=5.124)").responseData { (response) in
+        AF.request("https://api.vk.com/method/groups.get?extended=1&fields=name,photo_100&access_token=\(accessToken ?? "")&v=5.124").responseData { (response) in
             let data = response.data!
             
             let decoder = JSONDecoder()
             
             let groupData = try! decoder.decode(GroupModel.self, from: data).items
             self.saveGroupService.deleteEntityList(entity: "Group")
+            print ("GroupData: \(groupData)")
             for item in groupData {
                 self.saveGroupService.saveGroup(name: item.name, avatar: item.avatar)
             }
@@ -34,7 +35,7 @@ public class Group: NSManagedObject {
     func getSearchGroups() {
         let accessToken = Session.instance.token
         debugPrint("GroupToken: \(accessToken ?? "")")
-        AF.request("https://api.vk.com/method/groups.search?q=music&type=group&access_token=\(accessToken ?? "")&v=5.124)").responseData { (response) in
+        AF.request("https://api.vk.com/method/groups.search?q=music&type=group&access_token=\(accessToken ?? "")&v=5.124").responseData { (response) in
             let data = response.data!
             
             let decoder = JSONDecoder()

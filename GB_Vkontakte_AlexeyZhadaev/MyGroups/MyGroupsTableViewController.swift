@@ -11,14 +11,14 @@ import UIKit
 class MyGroupsTableViewController: UITableViewController {
     let groupService = Group()
     let saveService = CoreDataService()
-    var groups = [Group] ()
+    var groups = [Group]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         groupService.getGroupData()
-        saveService.readGroupList() { [weak self] groups in
-                self?.groups = groups
-                self?.tableView?.reloadData()
+        saveService.readGroupList() { [unowned self] groups in
+            self.groups = groups
+            self.tableView?.reloadData()
             }
     }
 
@@ -37,5 +37,4 @@ class MyGroupsTableViewController: UITableViewController {
         cell.configure(for: groups[indexPath.row])
         return cell
     }
-    
 }

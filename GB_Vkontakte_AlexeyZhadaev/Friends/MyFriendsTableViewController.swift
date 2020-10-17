@@ -11,7 +11,7 @@ import UIKit
 class MyFriendsTableViewController: UITableViewController {
     let userService = User()
     let saveService = CoreDataService()
-    var friends = [User] ()
+    var friends = [User]()
     var friendDictionary = [String: [User]]()
     var friendSection = [String]()
     var filteredFriends: [User] = []
@@ -20,11 +20,11 @@ class MyFriendsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         userService.getUserData()
-        saveService.readUserList() { [weak self] friends in
-            self?.friends = friends
-            self?.sortFriends()
-            self?.searchControllerSetup()
-            self?.tableView?.reloadData()
+        saveService.readUserList() { [unowned self] friends in
+            self.friends = friends
+            self.sortFriends()
+            self.searchControllerSetup()
+            self.tableView?.reloadData()
         }
     }
     

@@ -11,7 +11,7 @@ import UIKit
 class FriendPhotoCollectionViewController: UICollectionViewController {
     let saveService = CoreDataService()
     let photoService = Photo()
-    var photos = [Photo] ()
+    var photos = [Photo]()
     var friend: User!
     
     var selectedIndexPath: IndexPath!
@@ -21,9 +21,9 @@ class FriendPhotoCollectionViewController: UICollectionViewController {
         super.viewDidLoad()
         title = "\(friend.firstName ?? "") \(friend.lastName ?? "")"
         photoService.getPhotoData()
-        saveService.readPhotoList() { [weak self] photos in
-                self?.photos = photos
-                self?.collectionView?.reloadData()
+        saveService.readPhotoList() { [unowned self] photos in
+                self.photos = photos
+                self.collectionView?.reloadData()
         }
     }
     
