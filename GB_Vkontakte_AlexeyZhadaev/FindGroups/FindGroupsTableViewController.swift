@@ -9,13 +9,14 @@
 import UIKit
 
 class FindGroupsTableViewController: UITableViewController {
-
+    let saveService = CoreDataService()
     let groupService = Group()
-    var groups = [Item] ()
+    var groups = [Group] ()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        groupService.getSearchGroups() { [weak self] groups in
+        groupService.getSearchGroups()
+        saveService.readGroupList() { [weak self] groups in
                 self?.groups = groups
                 self?.tableView?.reloadData()
             }

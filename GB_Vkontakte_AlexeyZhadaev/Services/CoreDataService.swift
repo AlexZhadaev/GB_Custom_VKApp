@@ -11,8 +11,8 @@ import CoreData
 
 class CoreDataService {
     
-    let storeStack = CoreDataStack(modelName: "")
-
+    let storeStack = CoreDataStack(modelName: "GB_Vkontakte_AlexeyZhadaev")
+    
     
     func saveUser(firstName: String, lastName: String, avatar: String, id: Int) {
         let context = storeStack.context
@@ -20,23 +20,22 @@ class CoreDataService {
         user.firstName = firstName
         user.lastName = lastName
         user.avatar = avatar
-        user.id = Int16(id)
+        user.id = Int64(id)
         storeStack.saveContext()
     }
     
-    func readUserList() -> [User] {
+    func readUserList(completion: @escaping ([User]) -> Void) {
         let context = storeStack.context
         
-        return (try? context.fetch(User.fetchRequest()) as? [User]) ?? []
+        completion (try! context.fetch(User.fetchRequest()) as! [User])
     }
     
-    func deleteEntityList(name: String) {
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: name)
+    func deleteEntityList(entity: String) {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entity)
         let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
         do {
             try storeStack.context.execute(batchDeleteRequest)
         } catch {}
-        storeStack.saveContext()
     }
     
     func saveGroup(name: String, avatar: String) {
@@ -47,10 +46,10 @@ class CoreDataService {
         storeStack.saveContext()
     }
     
-    func readGroupList() -> [Group] {
+    func readGroupList(completion: @escaping ([Group]) -> Void) {
         let context = storeStack.context
         
-        return (try? context.fetch(Group.fetchRequest()) as? [Group]) ?? []
+        completion (try! context.fetch(Group.fetchRequest()) as! [Group])
     }
     
     func savePhoto(userLikes: Int, likesCount: Int, url: String) {
@@ -62,9 +61,9 @@ class CoreDataService {
         storeStack.saveContext()
     }
     
-    func readPhotoList() -> [Photo] {
+    func readPhotoList(completion: @escaping ([Photo]) -> Void) {
         let context = storeStack.context
         
-        return (try? context.fetch(User.fetchRequest()) as? [Photo]) ?? []
+        completion (try! context.fetch(Photo.fetchRequest()) as! [Photo])
     }
 }

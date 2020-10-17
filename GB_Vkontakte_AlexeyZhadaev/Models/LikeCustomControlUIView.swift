@@ -13,17 +13,17 @@ class LikeCustomControlUIView: UIView {
     @IBOutlet var countLabel: UILabel!
     @IBOutlet var buttonImage: UIButton!
     
-    var userLike: Int!
-    var count: Int!
+    var userLike: Int16!
+    var count: Int16!
     
-    func configure (for model: PhotoItem) {
-        userLike = model.likes.userLikes
+    func configure (for model: Photo) {
+        userLike = model.userLikes
         if userLike == 1 {
             buttonImage.setImage(UIImage(systemName: "suit.heart.fill"), for: .normal)
             buttonImage.tintColor = UIColor.systemRed
             countLabel.textColor = UIColor.systemRed
         }
-        count = model.likes.count
+        count = model.likesCount
         countLabel.text = String(count)
     }
     

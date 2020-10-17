@@ -13,9 +13,9 @@ class FriendPhotoCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var photo: UIImageView!
     @IBOutlet weak var likeCustomController: LikeCustomControlUIView!
     
-    func configure(for model: PhotoItem) {
+    func configure(for model: Photo) {
         likeCustomController.configure(for: model)
-        photo.load(url: URL(string: model.sizes[4].url)!)
+        photo.load(url: URL(string: model.url!)!)
     }
     
     override func prepareForReuse() {

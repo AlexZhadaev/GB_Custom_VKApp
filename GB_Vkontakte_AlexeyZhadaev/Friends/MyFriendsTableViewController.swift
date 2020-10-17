@@ -11,25 +11,20 @@ import UIKit
 class MyFriendsTableViewController: UITableViewController {
     let userService = User()
     let saveService = CoreDataService()
-    var friends = [UserItem] ()
-    var friendDictionary = [String: [UserItem]]()
+    var friends = [User] ()
+    var friendDictionary = [String: [User]]()
     var friendSection = [String]()
-    var filteredFriends: [UserItem] = []
+    var filteredFriends: [User] = []
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        userService.getUserData() { [weak self] friends in
+        userService.getUserData()
+        saveService.readUserList() { [weak self] friends in
             self?.friends = friends
             self?.sortFriends()
             self?.searchControllerSetup()
             self?.tableView?.reloadData()
-        }
-        saveService.deleteEntityList(name: "User")
-        saveService.saveUser(firstName: "Trener", lastName: "Trenner", avatar: "Avatar", id: 5463)
-        let userList = saveService.readUserList()
-        for user in userList {
-            debugPrint(user.firstName, user.lastName)
         }
     }
     
@@ -57,7 +52,7 @@ class MyFriendsTableViewController: UITableViewController {
     
     private func sortFriends() {
         for friend in friends {
-            let friendKey = "\(friend.firstName[friend.firstName.startIndex])".uppercased()
+            let friendKey = "\(friend.firstName![friend.firstName!.startIndex])".uppercased()
             if var friendValues = friendDictionary[friendKey] {
                 friendValues.append(friend)
                 friendDictionary[friendKey] = friendValues
@@ -118,20 +113,20 @@ class MyFriendsTableViewController: UITableViewController {
             let selectedSection = friendSection[indexPath.section]
             let selectedFriend = friendDictionary[selectedSection]
             let friendPhotoController = storyboard?.instantiateViewController(identifier: "PhotoGalleryStoryboardKey") as! FriendPhotoCollectionViewController
-            friendPhotoController.friend = selectedFriend?[indexPath.row]
-            Session.instance.userId = selectedFriend?[indexPath.row].id
+            friendPhotoController.friend = selectedFriend![indexPath.row]
+            Session.instance.userId = selectedFriend![indexPath.row].id
             self.show(friendPhotoController, sender: nil)
         }
     
     // MARK: - Search
     func filterContentForSearchText(_ searchText: String) {
-        filteredFriends = friends.filter { (friend: UserItem) -> Bool in
+        filteredFriends = friends.filter { (friend: User) -> Bool in
             
             if isSearchBarEmpty {
                 return false
             } else {
-                return friend.firstName.lowercased()
-                    .contains(searchText.lowercased())
+                return ((friend.firstName?.lowercased()
+                            .contains(searchText.lowercased())) != nil)
             }
         }
         

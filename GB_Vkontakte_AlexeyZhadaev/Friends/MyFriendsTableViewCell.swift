@@ -20,9 +20,9 @@ class MyFriendsTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    func configure(for model: UserItem) {
-        friendName.text = "\(model.firstName) \(model.lastName)"
-        customAvatarView.avatarImage.load(url: URL(string: model.avatar)!)
+    func configure(for model: User) {
+        friendName.text = "\(model.firstName ?? "") \(model.lastName ?? "")"
+        customAvatarView.avatarImage.load(url: URL(string: model.avatar!)!)
         customAvatarView.configure()
     }
     
