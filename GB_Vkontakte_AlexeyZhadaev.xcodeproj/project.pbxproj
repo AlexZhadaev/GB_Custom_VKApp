@@ -197,7 +197,6 @@
 				35A3BAF324D20B5000933891 /* LoginFormController.swift */,
 				35A3BAE524D20AD300933891 /* Main.storyboard */,
 				35A3BAEA24D20AD500933891 /* LaunchScreen.storyboard */,
-				35242F9525335D5C0074C173 /* GB_Vkontakte_AlexeyZhadaev.xcdatamodeld */,
 			);
 			path = GB_Vkontakte_AlexeyZhadaev;
 			sourceTree = "<group>";
@@ -212,9 +211,8 @@
 				35242F9D25335FED0074C173 /* User+CoreDataClass.swift */,
 				35242F9E25335FED0074C173 /* User+CoreDataProperties.swift */,
 				359B49E8251A73FF00878855 /* Session.swift */,
-				35242FA8253361ED0074C173 /* CoreDataStack.swift */,
-				35242FAB253363150074C173 /* CoreDataSaveService.swift */,
-				35F7D6B6253CA6CE00AD453D /* RealmSaveService.swift */,
+				35F7D6BF253CC00E00AD453D /* CoreData */,
+				35F7D6BE253CBD9700AD453D /* Realm */,
 				35F7D6B2253CA29400AD453D /* SaveServiceInterface.swift */,
 			);
 			path = Services;
@@ -230,6 +228,24 @@
 				358343D42505479B007017DC /* NewsPhotoCollectionViewCell.xib */,
 			);
 			path = News;
+			sourceTree = "<group>";
+		};
+		35F7D6BE253CBD9700AD453D /* Realm */ = {
+			isa = PBXGroup;
+			children = (
+				35F7D6B6253CA6CE00AD453D /* RealmSaveService.swift */,
+			);
+			path = Realm;
+			sourceTree = "<group>";
+		};
+		35F7D6BF253CC00E00AD453D /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				35242FA8253361ED0074C173 /* CoreDataStack.swift */,
+				35242FAB253363150074C173 /* CoreDataSaveService.swift */,
+				35242F9525335D5C0074C173 /* GB_Vkontakte_AlexeyZhadaev.xcdatamodeld */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 		6A768AF075930088B4235588 /* Frameworks */ = {
