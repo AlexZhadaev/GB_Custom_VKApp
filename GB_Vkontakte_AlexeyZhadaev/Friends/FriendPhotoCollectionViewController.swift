@@ -9,17 +9,17 @@
 import UIKit
 
 class FriendPhotoCollectionViewController: UICollectionViewController {
-    let saveService = CoreDataService()
+    let saveService = CoreDataSaveService()
     let photoService = Photo()
-    var photos = [Photo]()
-    var friend: User!
+    var photos = [PhotoEntity]()
+    var friend: UserEntity!
     
     var selectedIndexPath: IndexPath!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "\(friend.firstName ?? "") \(friend.lastName ?? "")"
+        title = "\(friend.firstName ) \(friend.lastName )"
         photoService.getPhotoData()
         saveService.readPhotoList() { [unowned self] photos in
                 self.photos = photos

@@ -10,11 +10,11 @@ import UIKit
 
 class MyFriendsTableViewController: UITableViewController {
     let userService = User()
-    let saveService = CoreDataService()
-    var friends = [User]()
-    var friendDictionary = [String: [User]]()
+    let saveService = CoreDataSaveService()
+    var friends = [UserEntity]()
+    var friendDictionary = [String: [UserEntity]]()
     var friendSection = [String]()
-    var filteredFriends: [User] = []
+    var filteredFriends: [UserEntity] = []
     
     
     override func viewDidLoad() {
@@ -52,7 +52,7 @@ class MyFriendsTableViewController: UITableViewController {
     
     private func sortFriends() {
         for friend in friends {
-            let friendKey = "\(friend.firstName![friend.firstName!.startIndex])".uppercased()
+            let friendKey = "\(friend.firstName[friend.firstName.startIndex])".uppercased()
             if var friendValues = friendDictionary[friendKey] {
                 friendValues.append(friend)
                 friendDictionary[friendKey] = friendValues
@@ -114,18 +114,18 @@ class MyFriendsTableViewController: UITableViewController {
             let selectedFriend = friendDictionary[selectedSection]
             let friendPhotoController = storyboard?.instantiateViewController(identifier: "PhotoGalleryStoryboardKey") as! FriendPhotoCollectionViewController
             friendPhotoController.friend = selectedFriend![indexPath.row]
-            Session.instance.userId = selectedFriend![indexPath.row].id
+            Session.instance.userId = Int64(selectedFriend![indexPath.row].id)
             self.show(friendPhotoController, sender: nil)
         }
     
     // MARK: - Search
     func filterContentForSearchText(_ searchText: String) {
-        filteredFriends = friends.filter { (friend: User) -> Bool in
+        filteredFriends = friends.filter { (friend: UserEntity) -> Bool in
             
             if isSearchBarEmpty {
                 return false
             } else {
-                return ((friend.firstName?.lowercased()
+                return ((friend.firstName.lowercased()
                             .contains(searchText.lowercased())) != nil)
             }
         }

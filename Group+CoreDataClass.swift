@@ -13,7 +13,7 @@ import Alamofire
 
 @objc(Group)
 public class Group: NSManagedObject {
-    let saveGroupService = CoreDataService()
+    let saveGroupService = CoreDataSaveService()
     
     func getGroupData() {
         let accessToken = Session.instance.token
@@ -25,7 +25,6 @@ public class Group: NSManagedObject {
             
             let groupData = try! decoder.decode(GroupModel.self, from: data).items
             self.saveGroupService.deleteEntityList(entity: "Group")
-            print ("GroupData: \(groupData)")
             for item in groupData {
                 self.saveGroupService.saveGroup(name: item.name, avatar: item.avatar)
             }
