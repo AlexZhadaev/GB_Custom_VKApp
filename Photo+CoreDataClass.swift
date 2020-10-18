@@ -13,7 +13,7 @@ import Alamofire
 
 @objc(Photo)
 public class Photo: NSManagedObject {
-    let savePhotoService = CoreDataService()
+    let savePhotoService = CoreDataSaveService()
     
     func getPhotoData() {
         let id = Session.instance.userId

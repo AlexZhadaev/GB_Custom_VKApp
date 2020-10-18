@@ -9,8 +9,8 @@
 import Foundation
 import CoreData
 
-class CoreDataService {
-    
+class CoreDataSaveService: SaveServiceInterface {
+
     lazy var storeStack = CoreDataStack(modelName: "GB_Vkontakte_AlexeyZhadaev")
     
     func saveUser(firstName: String, lastName: String, avatar: String, id: Int) {
@@ -23,11 +23,11 @@ class CoreDataService {
         storeStack.saveContext()
     }
     
-    func readUserList(completion: @escaping ([User]) -> Void) {
+    func readUserList(completion: @escaping ([UserEntity]) -> Void) {
         let context = storeStack.context
         let fetchRequest: NSFetchRequest<User> = User.fetchRequest()
         let objects = try! context.fetch(fetchRequest)
-        completion (objects)
+        completion (objects.map { UserEntity(firstName: $0.firstName ?? "", lastName: $0.lastName ?? "", avatar: $0.avatar ?? "", id: Int($0.id)) } )
     }
     
     func deleteEntityList(entity: String) {
@@ -46,11 +46,11 @@ class CoreDataService {
         storeStack.saveContext()
     }
     
-    func readGroupList(completion: @escaping ([Group]) -> Void) {
+    func readGroupList(completion: @escaping ([GroupEntity]) -> Void) {
         let context = storeStack.context
         let fetchRequest: NSFetchRequest<Group> = Group.fetchRequest()
         let objects = try! context.fetch(fetchRequest)
-        completion (objects)
+        completion (objects.map { GroupEntity(name: $0.name ?? "", avatar: $0.avatar ?? "") } )
     }
     
     func savePhoto(userLikes: Int, likesCount: Int, url: String) {
@@ -62,10 +62,10 @@ class CoreDataService {
         storeStack.saveContext()
     }
     
-    func readPhotoList(completion: @escaping ([Photo]) -> Void) {
+    func readPhotoList(completion: @escaping ([PhotoEntity]) -> Void) {
         let context = storeStack.context
         let fetchRequest: NSFetchRequest<Photo> = Photo.fetchRequest()
         let objects = try! context.fetch(fetchRequest)
-        completion (objects)
+        completion (objects.map { PhotoEntity(userLikes: Int($0.userLikes), likesCount: Int($0.likesCount), url: $0.url ?? "") } )
     }
 }

@@ -13,7 +13,7 @@ import Alamofire
 
 @objc(User)
 public class User: NSManagedObject {
-    let saveUserService = CoreDataService()
+    let saveUserService = CoreDataSaveService()
     
     func getUserData() {
         let accessToken = Session.instance.token

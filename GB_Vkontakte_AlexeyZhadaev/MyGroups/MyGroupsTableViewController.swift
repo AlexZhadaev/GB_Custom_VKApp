@@ -10,8 +10,8 @@ import UIKit
 
 class MyGroupsTableViewController: UITableViewController {
     let groupService = Group()
-    let saveService = CoreDataService()
-    var groups = [Group]()
+    let saveService = CoreDataSaveService()
+    var groups = [GroupEntity]()
     
     override func viewDidLoad() {
         super.viewDidLoad()

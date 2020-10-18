@@ -9,9 +9,9 @@
 import UIKit
 
 class FindGroupsTableViewController: UITableViewController {
-    let saveService = CoreDataService()
+    let saveService = CoreDataSaveService()
     let groupService = Group()
-    var groups = [Group]()
+    var groups = [GroupEntity]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
