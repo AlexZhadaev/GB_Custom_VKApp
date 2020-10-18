@@ -125,8 +125,8 @@ class MyFriendsTableViewController: UITableViewController {
             if isSearchBarEmpty {
                 return false
             } else {
-                return ((friend.firstName.lowercased()
-                            .contains(searchText.lowercased())) != nil)
+                return (friend.firstName.lowercased()
+                            .contains(searchText.lowercased()))
             }
         }
         
