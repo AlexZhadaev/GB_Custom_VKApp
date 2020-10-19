@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class MyGroupsTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
+class MyGroupsTableViewController: UITableViewController {
     let groupService = Group()
     let saveService = CoreDataSaveService()
     var groups = [GroupEntity]()
@@ -61,55 +61,57 @@ class MyGroupsTableViewController: UITableViewController, NSFetchedResultsContro
     }
 }
 
-//extension MyGroupsTableViewController: NSFetchedResultsControllerDelegate {
-//
-//    func controller(controller: NSFetchedResultsController<NSFetchRequestResult>, sectionIndexTitleForSectionName sectionName: String) -> String? {
-//        return sectionName
-//    }
-//
-//    func controllerWillChangeContent(controller: NSFetchedResultsController<NSFetchRequestResult>) {
-//        tableView.beginUpdates()
-//    }
-//
-//    func controller(controller: NSFetchedResultsController<NSFetchRequestResult>, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
-//        switch type {
-//        case .insert:
-//            tableView.insertSections(NSIndexSet(index: sectionIndex) as IndexSet, with: .fade)
-//        case .delete:
-//            tableView.deleteSections(NSIndexSet(index: sectionIndex) as IndexSet, with: .fade)
-//        default:
-//            return
-//        }
-//    }
-//
-//    func controller(controller: NSFetchedResultsController<NSFetchRequestResult>, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
-//
-//        switch type {
-//        case .insert:
-//            if let indexPath = newIndexPath {
-//                tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .automatic)
-//            }
-//        case .update:
-//            if let indexPath = indexPath {
-//                let product = fetchedResultsController.objectAtIndexPath(indexPath) as! Products
-//                guard let cell = tableView.cellForRow(at: indexPath as IndexPath) else { break }
-//                configureCell(cell, withObject: product)
-//            }
-//        case .move:
-//            if let indexPath = indexPath {
-//                tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .automatic)
-//            }
-//            if let newIndexPath = newIndexPath {
-//                tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .automatic)
-//            }
-//        case .delete:
-//            if let indexPath = indexPath {
-//                tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .automatic)
-//            }
-//        }
-//    }
-//
-//    func controllerDidChangeContent(controller: NSFetchedResultsController<NSFetchRequestResult>) {
-//        tableView.endUpdates()
-//    }
-//}
+extension MyGroupsTableViewController: NSFetchedResultsControllerDelegate {
+
+    func controllerWillChangeContent(_ controller:
+      NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.beginUpdates()
+    }
+
+    func controller(_ controller:
+      NSFetchedResultsController<NSFetchRequestResult>,
+      didChange sectionInfo: NSFetchedResultsSectionInfo,
+      atSectionIndex sectionIndex: Int,
+      for type: NSFetchedResultsChangeType) {
+
+      let indexSet = IndexSet(integer: sectionIndex)
+
+      switch type {
+      case .insert:
+        tableView.insertSections(indexSet, with: .automatic)
+      case .delete:
+        tableView.deleteSections(indexSet, with: .automatic)
+      default: break
+      }
+    }
+
+    func controller(_ controller:
+                        NSFetchedResultsController<NSFetchRequestResult>,
+                    didChange anObject: Any,
+                    at indexPath: IndexPath?,
+                    for type: NSFetchedResultsChangeType,
+                    newIndexPath: IndexPath?) {
+        
+        switch type {
+        case .insert:
+            tableView.insertRows(at: [newIndexPath!], with: .automatic)
+        case .delete:
+            tableView.deleteRows(at: [indexPath!], with: .automatic)
+            
+        case .update:
+            let cell = tableView.cellForRow(at: indexPath!) as! MyGroupsTableViewCell
+            cell.configure(for: fetchedResultsController.object(at: indexPath!))
+
+        case .move:
+            tableView.deleteRows(at: [indexPath!], with: .automatic)
+            tableView.insertRows(at: [newIndexPath!], with: .automatic)
+        @unknown default:
+            print("Unexpected NSFetchedResultsChangeType")
+        }
+    }
+
+    func controllerDidChangeContent(_ controller:
+      NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.endUpdates()
+    }
+}
