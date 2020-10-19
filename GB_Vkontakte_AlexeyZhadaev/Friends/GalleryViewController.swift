@@ -16,7 +16,7 @@ class GalleryViewController: UIViewController {
     
     @IBOutlet weak var photoImage: UIImageView!
     
-    var photos = [PhotoEntity]()
+    var photos = [Photo]()
     
     var currentIndex = 0
     
@@ -38,7 +38,7 @@ class GalleryViewController: UIViewController {
         if count == 0 {return}
         if count <= index {return}
         
-        photoImage.load(url: URL(string: photo.url)!)
+        photoImage.load(url: URL(string: photo.url!)!)
     }
     
     fileprivate func setupGestures() {
@@ -135,7 +135,7 @@ class GalleryViewController: UIViewController {
                         index = (index + 1) % count
                     }
                     
-                    self.photoImage.load(url: URL(string: self.photos[index].url)!)
+                    self.photoImage.load(url: URL(string: self.photos[index].url!)!)
                     self.currentIndex = index
                     
                     self.photoImage.alpha = 0

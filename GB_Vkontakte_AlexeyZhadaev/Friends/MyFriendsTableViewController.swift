@@ -7,15 +7,17 @@
 //
 
 import UIKit
+import CoreData
 
-class MyFriendsTableViewController: UITableViewController {
+class MyFriendsTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
     let userService = User()
     let saveService = CoreDataSaveService()
     var friends = [UserEntity]()
     var friendDictionary = [String: [UserEntity]]()
     var friendSection = [String]()
     var filteredFriends: [UserEntity] = []
-    
+    var fetchedResultsController: NSFetchedResultsController<User>!
+    var commitPredicate: NSPredicate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -133,6 +135,26 @@ class MyFriendsTableViewController: UITableViewController {
         tableView.reloadData()
     }
     
+    func loadSavedData() {
+        if fetchedResultsController == nil {
+            let request = User.createFetchRequest()
+            let sort = NSSortDescriptor(key: "firstName", ascending: false)
+            request.sortDescriptors = [sort]
+            
+            fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: saveService.storeStack.context, sectionNameKeyPath: nil, cacheName: nil)
+            fetchedResultsController.delegate = self
+        }
+        
+        fetchedResultsController.fetchRequest.predicate = commitPredicate
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            do {
+                try self.fetchedResultsController.performFetch()
+                self.tableView.reloadData()
+            } catch {
+                print("Fetch failed")
+            }
+        }
+    }
 }
 //MARK:- Extensions
 

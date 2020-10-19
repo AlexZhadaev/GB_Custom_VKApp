@@ -13,7 +13,7 @@ import CoreData
 
 extension Photo {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<Photo> {
+    @nonobjc public class func createFetchRequest() -> NSFetchRequest<Photo> {
         return NSFetchRequest<Photo>(entityName: "Photo")
     }
 

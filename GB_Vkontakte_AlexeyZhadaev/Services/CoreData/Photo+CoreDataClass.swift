@@ -15,6 +15,11 @@ import Alamofire
 public class Photo: NSManagedObject {
     let savePhotoService = CoreDataSaveService()
     
+    override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) {
+            super.init(entity: entity, insertInto: context)
+            print("Init called!")
+        }
+    
     func getPhotoData() {
         let id = Session.instance.userId
         let accessToken = Session.instance.token

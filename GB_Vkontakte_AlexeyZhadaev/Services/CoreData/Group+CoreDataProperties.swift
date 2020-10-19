@@ -13,7 +13,7 @@ import CoreData
 
 extension Group {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<Group> {
+    @nonobjc public class func createFetchRequest() -> NSFetchRequest<Group> {
         return NSFetchRequest<Group>(entityName: "Group")
     }
 

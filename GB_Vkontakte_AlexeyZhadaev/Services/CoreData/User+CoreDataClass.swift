@@ -12,25 +12,13 @@ import CoreData
 import Alamofire
 
 @objc(User)
-public class User: NSManagedObject, NSFetchedResultsControllerDelegate {
+public class User: NSManagedObject {
     let saveUserService = CoreDataSaveService()
     
-    lazy var fetchedResultsController: NSFetchedResultsController<User> = {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-
-        let managedContext = saveUserService.storeStack.context
-
-        let fetchRequest = NSFetchRequest<User>(entityName: "User")
-        
-        let sortDescriptor = NSSortDescriptor(key: "lastName", ascending: false)
-        fetchRequest.sortDescriptors = [sortDescriptor]
-
-        let fetchedResultsController = NSFetchedResultsController<User>(fetchRequest: fetchRequest, managedObjectContext: managedContext, sectionNameKeyPath: nil, cacheName: nil)
-        
-        fetchedResultsController.delegate = self
-        
-        return fetchedResultsController
-      }()
+    override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) {
+            super.init(entity: entity, insertInto: context)
+            print("Init called!")
+        }
     
     func getUserData() {
         let accessToken = Session.instance.token

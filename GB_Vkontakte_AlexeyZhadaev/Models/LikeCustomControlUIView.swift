@@ -16,7 +16,7 @@ class LikeCustomControlUIView: UIView {
     var userLike: Int16!
     var count: Int16!
     
-    func configure (for model: PhotoEntity) {
+    func configure (for model: Photo) {
         userLike = Int16(model.userLikes)
         if userLike == 1 {
             buttonImage.setImage(UIImage(systemName: "suit.heart.fill"), for: .normal)

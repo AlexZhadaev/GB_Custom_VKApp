@@ -25,7 +25,7 @@ class CoreDataSaveService: SaveServiceInterface {
     
     func readUserList(completion: @escaping ([UserEntity]) -> Void) {
         let context = storeStack.context
-        let fetchRequest: NSFetchRequest<User> = User.fetchRequest()
+        let fetchRequest: NSFetchRequest<User> = User.createFetchRequest()
         let objects = try! context.fetch(fetchRequest)
         completion (objects.map { UserEntity(firstName: $0.firstName ?? "", lastName: $0.lastName ?? "", avatar: $0.avatar ?? "", id: Int($0.id)) } )
     }
@@ -48,7 +48,7 @@ class CoreDataSaveService: SaveServiceInterface {
     
     func readGroupList(completion: @escaping ([GroupEntity]) -> Void) {
         let context = storeStack.context
-        let fetchRequest: NSFetchRequest<Group> = Group.fetchRequest()
+        let fetchRequest: NSFetchRequest<Group> = Group.createFetchRequest()
         let objects = try! context.fetch(fetchRequest)
         completion (objects.map { GroupEntity(name: $0.name ?? "", avatar: $0.avatar ?? "") } )
     }
@@ -64,7 +64,7 @@ class CoreDataSaveService: SaveServiceInterface {
     
     func readPhotoList(completion: @escaping ([PhotoEntity]) -> Void) {
         let context = storeStack.context
-        let fetchRequest: NSFetchRequest<Photo> = Photo.fetchRequest()
+        let fetchRequest: NSFetchRequest<Photo> = Photo.createFetchRequest()
         let objects = try! context.fetch(fetchRequest)
         completion (objects.map { PhotoEntity(userLikes: Int($0.userLikes), likesCount: Int($0.likesCount), url: $0.url ?? "") } )
     }

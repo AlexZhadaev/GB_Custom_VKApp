@@ -15,6 +15,11 @@ import Alamofire
 public class Group: NSManagedObject {
     let saveGroupService = CoreDataSaveService()
     
+    override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) {
+            super.init(entity: entity, insertInto: context)
+            print("Init called!")
+        }
+    
     func getGroupData() {
         let accessToken = Session.instance.token
         debugPrint("GroupToken: \(accessToken ?? "")")
