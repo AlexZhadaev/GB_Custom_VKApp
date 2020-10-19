@@ -15,6 +15,23 @@ import Alamofire
 public class User: NSManagedObject {
     let saveUserService = CoreDataSaveService()
     
+    lazy var fetchedResultsController: NSFetchedResultsController<User> = {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+
+        let managedContext = saveUserService.storeStack.context
+
+        let fetchRequest = NSFetchRequest<User>(entityName: "User")
+        
+        let sortDescriptor = NSSortDescriptor(key: "lastName", ascending: false)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+
+        let fetchedResultsController = NSFetchedResultsController<User>(fetchRequest: fetchRequest, managedObjectContext: managedContext, sectionNameKeyPath: nil, cacheName: nil)
+        
+        fetchedResultsController.delegate = self
+        
+        return fetchedResultsController
+      }()
+    
     func getUserData() {
         let accessToken = Session.instance.token
         debugPrint("UserServisesToken: \(accessToken ?? "")")
