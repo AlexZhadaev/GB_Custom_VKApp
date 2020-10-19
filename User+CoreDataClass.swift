@@ -12,7 +12,7 @@ import CoreData
 import Alamofire
 
 @objc(User)
-public class User: NSManagedObject {
+public class User: NSManagedObject, NSFetchedResultsControllerDelegate {
     let saveUserService = CoreDataSaveService()
     
     lazy var fetchedResultsController: NSFetchedResultsController<User> = {
