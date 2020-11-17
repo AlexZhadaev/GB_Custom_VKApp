@@ -15,7 +15,7 @@ import Alamofire
 public class Group: NSManagedObject {
     let saveGroupService = CoreDataSaveService()
     
-    func getGroupData() {
+    func getGroupData(completion: @escaping () -> Void) {
         let accessToken = Session.instance.token
         debugPrint("GroupToken: \(accessToken ?? "")")
         AF.request("https://api.vk.com/method/groups.get?extended=1&fields=name,photo_100&access_token=\(accessToken ?? "")&v=5.124").responseData { (response) in
@@ -27,11 +27,12 @@ public class Group: NSManagedObject {
             self.saveGroupService.deleteEntityList(entity: "Group")
             for item in groupData {
                 self.saveGroupService.saveGroup(name: item.name, avatar: item.avatar)
+                completion()
             }
         }
     }
     
-    func getSearchGroups() {
+    func getSearchGroups(completion: @escaping () -> Void) {
         let accessToken = Session.instance.token
         debugPrint("GroupToken: \(accessToken ?? "")")
         AF.request("https://api.vk.com/method/groups.search?q=music&type=group&access_token=\(accessToken ?? "")&v=5.124").responseData { (response) in
@@ -43,6 +44,7 @@ public class Group: NSManagedObject {
             self.saveGroupService.deleteEntityList(entity: "Group")
             for item in groupData {
                 self.saveGroupService.saveGroup(name: item.name, avatar: item.avatar)
+                completion()
             }
         }
     }

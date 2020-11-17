@@ -14,12 +14,12 @@ class MyFriendsTableViewController: UITableViewController {
     var friends = [UserEntity]()
     var friendDictionary = [String: [UserEntity]]()
     var friendSection = [String]()
-    var filteredFriends: [UserEntity] = []
+    var filteredFriends = [UserEntity]()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        userService.getUserData()
+        userService.getUserData(completion: {})
         saveService.readUserList() { [unowned self] friends in
             self.friends = friends
             self.sortFriends()
@@ -65,7 +65,11 @@ class MyFriendsTableViewController: UITableViewController {
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return friendSection.count
+        if isFiltering {
+            return 1
+        } else {
+            return friendSection.count
+        }
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -103,13 +107,21 @@ class MyFriendsTableViewController: UITableViewController {
         return headerView
     }
     
-    
     override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
         return friendSection
     }
     // MARK: - TableView delegate
     
-        override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if isFiltering {
+            
+            let selectedFriend = filteredFriends[indexPath.row]
+            let friendPhotoController = storyboard?.instantiateViewController(identifier: "PhotoGalleryStoryboardKey") as! FriendPhotoCollectionViewController
+            friendPhotoController.friend = selectedFriend
+            Session.instance.userId = Int64(selectedFriend.id)
+            self.show(friendPhotoController, sender: nil)
+        } else {
+            
             let selectedSection = friendSection[indexPath.section]
             let selectedFriend = friendDictionary[selectedSection]
             let friendPhotoController = storyboard?.instantiateViewController(identifier: "PhotoGalleryStoryboardKey") as! FriendPhotoCollectionViewController
@@ -117,24 +129,22 @@ class MyFriendsTableViewController: UITableViewController {
             Session.instance.userId = Int64(selectedFriend![indexPath.row].id)
             self.show(friendPhotoController, sender: nil)
         }
+    }
     
     // MARK: - Search
     func filterContentForSearchText(_ searchText: String) {
         filteredFriends = friends.filter { (friend: UserEntity) -> Bool in
-            
             if isSearchBarEmpty {
                 return false
             } else {
-                return (friend.firstName.lowercased()
-                            .contains(searchText.lowercased()))
+                return (friend.firstName.lowercased().contains(searchText.lowercased()))
             }
         }
-        
         tableView.reloadData()
     }
     
 }
-//MARK:- Extensions
+//MARK:- UISearch
 
 extension MyFriendsTableViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {

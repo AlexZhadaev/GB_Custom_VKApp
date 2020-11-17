@@ -15,7 +15,7 @@ import Alamofire
 public class Photo: NSManagedObject {
     let savePhotoService = CoreDataSaveService()
     
-    func getPhotoData() {
+    func getPhotoData(completion: @escaping () -> Void) {
         let id = Session.instance.userId
         let accessToken = Session.instance.token
         debugPrint("PhotoServisesToken: \(accessToken ?? "")")
@@ -29,6 +29,7 @@ public class Photo: NSManagedObject {
             self.savePhotoService.deleteEntityList(entity: "Photo")
             for item in photoData {
                 self.savePhotoService.savePhoto(userLikes: item.likes.userLikes, likesCount: item.likes.count, url: item.sizes[4].url)
+                completion()
             }
         }
     }

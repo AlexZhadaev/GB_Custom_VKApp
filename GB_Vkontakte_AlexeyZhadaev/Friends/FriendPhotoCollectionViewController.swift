@@ -20,11 +20,12 @@ class FriendPhotoCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "\(friend.firstName ) \(friend.lastName )"
-        photoService.getPhotoData()
-        saveService.readPhotoList() { [unowned self] photos in
+        photoService.getPhotoData(completion: {
+            self.saveService.readPhotoList() { [unowned self] photos in
                 self.photos = photos
                 self.collectionView?.reloadData()
-        }
+            }
+        })
     }
     
     

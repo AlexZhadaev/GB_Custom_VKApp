@@ -15,7 +15,7 @@ import Alamofire
 public class User: NSManagedObject {
     let saveUserService = CoreDataSaveService()
     
-    func getUserData() {
+    func getUserData(completion: @escaping () -> Void) {
         let accessToken = Session.instance.token
         debugPrint("UserServisesToken: \(accessToken ?? "")")
         AF.request("https://api.vk.com/method/friends.get?fields=bdate,photo_100&access_token=\(accessToken ?? "")&v=5.124").responseData { (response) in
@@ -27,6 +27,7 @@ public class User: NSManagedObject {
             self.saveUserService.deleteEntityList(entity: "User")
             for item in userData {
                 self.saveUserService.saveUser(firstName: item.firstName, lastName: item.lastName, avatar: item.avatar, id: item.id)
+                completion()
             }
         }
     }
