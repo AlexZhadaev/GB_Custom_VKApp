@@ -56,12 +56,12 @@
 		350B467924DC74AC00910FCE /* MyFriendsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFriendsTableViewController.swift; sourceTree = "<group>"; };
 		350B467B24DC74C200910FCE /* MyFriendsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFriendsTableViewCell.swift; sourceTree = "<group>"; };
 		35242F9625335D5C0074C173 /* GB_Vkontakte_AlexeyZhadaev.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GB_Vkontakte_AlexeyZhadaev.xcdatamodel; sourceTree = "<group>"; };
-		35242F9925335FED0074C173 /* Group+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Group+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
-		35242F9A25335FED0074C173 /* Group+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Group+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
-		35242F9B25335FED0074C173 /* Photo+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Photo+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
-		35242F9C25335FED0074C173 /* Photo+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Photo+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
-		35242F9D25335FED0074C173 /* User+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
-		35242F9E25335FED0074C173 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		35242F9925335FED0074C173 /* Group+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Group+CoreDataClass.swift"; path = "GB_Vkontakte_AlexeyZhadaev/Services/CoreData/Group+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		35242F9A25335FED0074C173 /* Group+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Group+CoreDataProperties.swift"; path = "GB_Vkontakte_AlexeyZhadaev/Services/CoreData/Group+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		35242F9B25335FED0074C173 /* Photo+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Photo+CoreDataClass.swift"; path = "GB_Vkontakte_AlexeyZhadaev/Services/CoreData/Photo+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		35242F9C25335FED0074C173 /* Photo+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Photo+CoreDataProperties.swift"; path = "GB_Vkontakte_AlexeyZhadaev/Services/CoreData/Photo+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		35242F9D25335FED0074C173 /* User+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "User+CoreDataClass.swift"; path = "GB_Vkontakte_AlexeyZhadaev/Services/CoreData/User+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		35242F9E25335FED0074C173 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "User+CoreDataProperties.swift"; path = "GB_Vkontakte_AlexeyZhadaev/Services/CoreData/User+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		35242FA8253361ED0074C173 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		35242FAB253363150074C173 /* CoreDataSaveService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataSaveService.swift; sourceTree = "<group>"; };
 		3533F2062506BDEE001975AB /* LoadingDots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingDots.swift; sourceTree = "<group>"; };
@@ -204,16 +204,10 @@
 		35A46C412520BFF500BEFD6B /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				35242F9925335FED0074C173 /* Group+CoreDataClass.swift */,
-				35242F9A25335FED0074C173 /* Group+CoreDataProperties.swift */,
-				35242F9B25335FED0074C173 /* Photo+CoreDataClass.swift */,
-				35242F9C25335FED0074C173 /* Photo+CoreDataProperties.swift */,
-				35242F9D25335FED0074C173 /* User+CoreDataClass.swift */,
-				35242F9E25335FED0074C173 /* User+CoreDataProperties.swift */,
+				35F7D6B2253CA29400AD453D /* SaveServiceInterface.swift */,
 				359B49E8251A73FF00878855 /* Session.swift */,
 				35F7D6BF253CC00E00AD453D /* CoreData */,
 				35F7D6BE253CBD9700AD453D /* Realm */,
-				35F7D6B2253CA29400AD453D /* SaveServiceInterface.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -241,6 +235,12 @@
 		35F7D6BF253CC00E00AD453D /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				35242F9925335FED0074C173 /* Group+CoreDataClass.swift */,
+				35242F9A25335FED0074C173 /* Group+CoreDataProperties.swift */,
+				35242F9B25335FED0074C173 /* Photo+CoreDataClass.swift */,
+				35242F9C25335FED0074C173 /* Photo+CoreDataProperties.swift */,
+				35242F9D25335FED0074C173 /* User+CoreDataClass.swift */,
+				35242F9E25335FED0074C173 /* User+CoreDataProperties.swift */,
 				35242FA8253361ED0074C173 /* CoreDataStack.swift */,
 				35242FAB253363150074C173 /* CoreDataSaveService.swift */,
 				35242F9525335D5C0074C173 /* GB_Vkontakte_AlexeyZhadaev.xcdatamodeld */,

@@ -12,7 +12,7 @@ class NewsTableViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
-//    var news = ["BreakingNews#1", "BreakingNews#2"]
+    var news = ["BreakingNews#1", "BreakingNews#2"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,12 +31,11 @@ extension NewsTableViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return news.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "NewsCellXibKey", for: indexPath) as! NewsTableViewCell
-//        let newsUnite = news[indexPath.row]
         cell.newsLabel?.text = "Моя карьера в жюри премии #ЗолотойГлобус продолжается и я рад дебютировать в качестве ведущего подкаста HFPA In Conversation! Скоро, на http://GoldenGlobes.com и цифровых платформах США!"
         cell.authorAvatar?.image = UIImage(named: "avatarNevsky")
         cell.newsAuthor?.text = "Александр Невский"

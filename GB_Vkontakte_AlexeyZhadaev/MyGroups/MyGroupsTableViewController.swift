@@ -15,11 +15,13 @@ class MyGroupsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        groupService.getGroupData()
-        saveService.readGroupList() { [unowned self] groups in
-            self.groups = groups
-            self.tableView?.reloadData()
-            }
+        groupService.getGroupData(completion: {
+            self.saveService.readGroupList() { [unowned self] groups in
+                self.groups = groups
+                self.tableView?.reloadData()
+                }
+        })
+        
     }
 
     // MARK: - Table view data source
