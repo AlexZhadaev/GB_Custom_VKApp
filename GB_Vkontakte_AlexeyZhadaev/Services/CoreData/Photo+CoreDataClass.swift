@@ -16,12 +16,20 @@ public class Photo: NSManagedObject {
     let savePhotoService = CoreDataSaveService()
     
     func getPhotoData(completion: @escaping () -> Void) {
-        let id = Session.instance.userId
-        let accessToken = Session.instance.token
-        debugPrint("PhotoServisesToken: \(accessToken ?? "")")
-        debugPrint("PhotoServisesId: \(id ?? 0)")
-        AF.request("https://api.vk.com/method/photos.getAll?owner_id=\(id ?? 0)&extended=1&count=20&photo_sizes=1&access_token=\(accessToken ?? "")&v=5.124").responseData { (response) in
-            let data = response.data!
+        guard let id = Session.instance.userId else {
+            debugPrint("No id in getPhotoData")
+            return
+        }
+        guard let accessToken = Session.instance.token else {
+            debugPrint("No access token in getPhotoData")
+            return
+        }
+        
+        AF.request("https://api.vk.com/method/photos.getAll?owner_id=\(id)&extended=1&count=20&photo_sizes=1&access_token=\(accessToken)&v=5.124").responseData { (response) in
+            guard let data = response.data else {
+                debugPrint("No data from AF.request in getPhotoData")
+                return
+            }
             
             let decoder = JSONDecoder()
             
@@ -46,7 +54,7 @@ struct Response: Decodable {
 struct PhotoItem: Decodable {
     let sizes: [Size]
     var likes: Likes
-
+    
     enum CodingKeys: String, CodingKey {
         case sizes, likes
     }
@@ -54,7 +62,7 @@ struct PhotoItem: Decodable {
 
 struct Likes: Decodable {
     var userLikes, count: Int
-
+    
     enum CodingKeys: String, CodingKey {
         case userLikes = "user_likes"
         case count

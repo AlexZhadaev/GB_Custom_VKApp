@@ -13,10 +13,13 @@ final class CustomPushAnimator: NSObject, UIViewControllerAnimatedTransitioning 
         return 1.2
     }
     
-    
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
-        guard let source = transitionContext.viewController(forKey: .from) else { return }
-        guard let destination = transitionContext.viewController(forKey: .to) else { return }
+        guard let source = transitionContext.viewController(forKey: .from) else {
+            debugPrint("No source in animateTransition")
+            return }
+        guard let destination = transitionContext.viewController(forKey: .to) else {
+            debugPrint("No destination in animateTransition")
+            return }
         
         transitionContext.containerView.addSubview(destination.view)
         destination.view.frame = source.view.frame
@@ -32,19 +35,19 @@ final class CustomPushAnimator: NSObject, UIViewControllerAnimatedTransitioning 
                                                        animations: {
                                                         let translation = CGAffineTransform(rotationAngle: CGFloat.pi/2)
                                                         source.view.transform = translation
-                                    })
+                                                       })
                                     UIView.addKeyframe(withRelativeStartTime: 0.2,
                                                        relativeDuration: 0.4,
                                                        animations: {
                                                         let translation = CGAffineTransform(rotationAngle: 0)
                                                         destination.view.transform = translation
-                                    })
+                                                       })
                                     UIView.addKeyframe(withRelativeStartTime: 0.6,
                                                        relativeDuration: 0.4,
                                                        animations: {
                                                         destination.view.transform = .identity
-                                    })
-        }) { finished in
+                                                       })
+                                }) { finished in
             if finished && !transitionContext.transitionWasCancelled {
                 source.view.transform = .identity
                 source.view.reallyWorkingAnchorPoint(anchorPoint: CGPoint(x: 0.5, y: 0.5))
@@ -61,8 +64,12 @@ final class CustomPopAnimator: NSObject, UIViewControllerAnimatedTransitioning {
     }
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
-        guard let source = transitionContext.viewController(forKey: .from) else { return }
-        guard let destination = transitionContext.viewController(forKey: .to) else { return }
+        guard let source = transitionContext.viewController(forKey: .from) else {
+            debugPrint("No source in CustomPopAnimator")
+            return }
+        guard let destination = transitionContext.viewController(forKey: .to) else {
+            debugPrint("No destination in CustomPopAnimator")
+            return }
         
         transitionContext.containerView.addSubview(destination.view)
         transitionContext.containerView.sendSubviewToBack(destination.view)
@@ -82,20 +89,18 @@ final class CustomPopAnimator: NSObject, UIViewControllerAnimatedTransitioning {
                                                        animations: {
                                                         let translation = CGAffineTransform(rotationAngle: 0)
                                                         source.view.transform = translation
-                                    })
+                                                       })
                                     UIView.addKeyframe(withRelativeStartTime: 0.4,
                                                        relativeDuration: 0.4,
                                                        animations: {
                                                         source.view.transform = CGAffineTransform(rotationAngle: -CGFloat.pi/2)
-                                    })
+                                                       })
                                     UIView.addKeyframe(withRelativeStartTime: 0.25,
                                                        relativeDuration: 0.75,
                                                        animations: {
                                                         destination.view.transform = .identity
-                                    })
-                                    
-                                    
-        }) { finished in
+                                                       })
+                                }) { finished in
             if finished && !transitionContext.transitionWasCancelled {
                 source.removeFromParent()
             } else if transitionContext.transitionWasCancelled {
@@ -131,8 +136,8 @@ class CustomNavigationController: UINavigationController, UINavigationController
     
     func navigationController(_ navigationController: UINavigationController,
                               interactionControllerFor animationController: UIViewControllerAnimatedTransitioning)
-        -> UIViewControllerInteractiveTransitioning? {
-            return interactiveTransition.hasStarted ? interactiveTransition : nil
+    -> UIViewControllerInteractiveTransitioning? {
+        return interactiveTransition.hasStarted ? interactiveTransition : nil
     }
 }
 
@@ -140,8 +145,7 @@ class CustomInteractiveTransition: UIPercentDrivenInteractiveTransition {
     
     var viewController: UIViewController? {
         didSet {
-            let recognizer = UIScreenEdgePanGestureRecognizer(target: self,
-                                                              action: #selector(handleScreenEdgeGesture(_:)))
+            let recognizer = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(handleScreenEdgeGesture(_:)))
             recognizer.edges = [.left]
             viewController?.view.addGestureRecognizer(recognizer)
         }

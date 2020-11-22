@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 
 class CoreDataSaveService: SaveServiceInterface {
-
+    
     lazy var storeStack = CoreDataStack(modelName: "GB_Vkontakte_AlexeyZhadaev")
     
     func saveUser(firstName: String, lastName: String, avatar: String, id: Int) {

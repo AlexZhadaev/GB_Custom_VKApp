@@ -64,5 +64,4 @@ class GradientView: UIView {
     func updateEndPoint() {
         self.gradientLayer.endPoint = endPoint
     }
-    
 }

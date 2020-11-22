@@ -16,10 +16,16 @@ public class User: NSManagedObject {
     let saveUserService = CoreDataSaveService()
     
     func getUserData(completion: @escaping () -> Void) {
-        let accessToken = Session.instance.token
-        debugPrint("UserServisesToken: \(accessToken ?? "")")
-        AF.request("https://api.vk.com/method/friends.get?fields=bdate,photo_100&access_token=\(accessToken ?? "")&v=5.124").responseData { (response) in
-            let data = response.data!
+        guard let accessToken = Session.instance.token else {
+            debugPrint("No access token in getUserData")
+            return
+        }
+        
+        AF.request("https://api.vk.com/method/friends.get?fields=bdate,photo_100&access_token=\(accessToken)&v=5.124").responseData { (response) in
+            guard let data = response.data else {
+                debugPrint("No data from AF.request in getUserData")
+                return
+            }
             
             let decoder = JSONDecoder()
             
@@ -41,7 +47,7 @@ struct UserModel: Decodable {
         let responseValues = try values.nestedContainer(keyedBy: ResponseKeys.self, forKey: .response)
         items = try responseValues.decode([UserItem].self, forKey: .items)
     }
-
+    
     
     enum CodingKeys: String, CodingKey {
         case response
