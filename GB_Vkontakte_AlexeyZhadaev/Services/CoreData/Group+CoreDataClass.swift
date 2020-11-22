@@ -16,10 +16,16 @@ public class Group: NSManagedObject {
     let saveGroupService = CoreDataSaveService()
     
     func getGroupData(completion: @escaping () -> Void) {
-        let accessToken = Session.instance.token
-        debugPrint("GroupToken: \(accessToken ?? "")")
-        AF.request("https://api.vk.com/method/groups.get?extended=1&fields=name,photo_100&access_token=\(accessToken ?? "")&v=5.124").responseData { (response) in
-            let data = response.data!
+        guard let accessToken = Session.instance.token else {
+            debugPrint("No access token in getGroupData")
+            return
+        }
+        
+        AF.request("https://api.vk.com/method/groups.get?extended=1&fields=name,photo_100&access_token=\(accessToken)&v=5.124").responseData { (response) in
+            guard let data = response.data else {
+                debugPrint("No data from AF.request in getGroupData")
+                return
+            }
             
             let decoder = JSONDecoder()
             
@@ -33,10 +39,16 @@ public class Group: NSManagedObject {
     }
     
     func getSearchGroups(completion: @escaping () -> Void) {
-        let accessToken = Session.instance.token
-        debugPrint("GroupToken: \(accessToken ?? "")")
-        AF.request("https://api.vk.com/method/groups.search?q=music&type=group&access_token=\(accessToken ?? "")&v=5.124").responseData { (response) in
-            let data = response.data!
+        guard let accessToken = Session.instance.token else {
+            debugPrint("No access token in getSearchGroups")
+            return
+        }
+        
+        AF.request("https://api.vk.com/method/groups.search?q=music&type=group&access_token=\(accessToken)&v=5.124").responseData { (response) in
+            guard let data = response.data else {
+                debugPrint("No data from AF.request in getSearchGroups")
+                return
+            }
             
             let decoder = JSONDecoder()
             

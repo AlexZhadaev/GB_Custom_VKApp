@@ -27,9 +27,8 @@ class CustomAvatarView: UIView {
         avatarShadow.setNeedsDisplay()
         
     }
-    
-      // MARK: - animations
-        func animateAvatar() {
+    // MARK: - animations
+    func animateAvatar() {
         let animation = CASpringAnimation(keyPath: "transform.scale")
         animation.fromValue = 0
         animation.toValue = 1
@@ -42,4 +41,3 @@ class CustomAvatarView: UIView {
         self.avatarImage.layer.add(animation, forKey: nil)
     }
 }
-

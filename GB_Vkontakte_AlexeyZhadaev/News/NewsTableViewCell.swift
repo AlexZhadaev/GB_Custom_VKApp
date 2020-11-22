@@ -37,7 +37,7 @@ class NewsTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollection
         super.layoutIfNeeded()
             
         authorAvatar.clipsToBounds = true
-        authorAvatar.layer.cornerRadius = authorAvatar.frame.width / 2
+        authorAvatar.layer.cornerRadius = authorAvatar.frame.width/2
     }
     
     override func prepareForReuse() {
@@ -58,7 +58,6 @@ class NewsTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollection
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "NewsPhotoXibKey", for: indexPath as IndexPath) as! NewsPhotoCollectionViewCell
-
         return cell
     }
     
@@ -75,11 +74,9 @@ class NewsTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollection
         newsLikeCount.text = "\(count)"
     }
     
-    
     @IBAction func commentButtonDidPressed(_ sender: Any) {
     }
     
     @IBAction func shareButtonDidPressed(_ sender: Any) {
     }
-    
 }

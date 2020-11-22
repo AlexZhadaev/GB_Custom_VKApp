@@ -9,7 +9,7 @@
 import RealmSwift
 
 class UserObject: Object {
-   @objc dynamic var firstName = ""
+    @objc dynamic var firstName = ""
     @objc dynamic var lastName = ""
     @objc dynamic var avatar = ""
     @objc dynamic var id: Int = 0

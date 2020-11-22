@@ -9,7 +9,7 @@
 import UIKit
 
 class LikeCustomControlUIView: UIView {
-
+    
     @IBOutlet var countLabel: UILabel!
     @IBOutlet var buttonImage: UIButton!
     
@@ -39,5 +39,5 @@ class LikeCustomControlUIView: UIView {
         }
         countLabel.text = "\(count ?? 0)"
     }
-
+    
 }
