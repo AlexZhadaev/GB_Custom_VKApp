@@ -101,8 +101,12 @@ class MyFriendsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView(frame: CGRect())
         headerView.backgroundColor = .init(white: 0.9, alpha: 0.4)
-        let label = UILabel(frame: CGRect(x: 15, y: 6, width: 50, height: 15))
+        let label = UILabel(frame: CGRect(x: 15, y: 6, width: 200, height: 15))
+        if isFiltering {
+            label.text = "Результаты поиска: "
+        } else {
         label.text = friendSection[section]
+        }
         headerView.addSubview(label)
         return headerView
     }
@@ -114,19 +118,20 @@ class MyFriendsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if isFiltering {
-            
             let selectedFriend = filteredFriends[indexPath.row]
             let friendPhotoController = storyboard?.instantiateViewController(identifier: "PhotoGalleryStoryboardKey") as! FriendPhotoCollectionViewController
             friendPhotoController.friend = selectedFriend
             Session.instance.userId = Int64(selectedFriend.id)
             self.show(friendPhotoController, sender: nil)
         } else {
-            
             let selectedSection = friendSection[indexPath.section]
-            let selectedFriend = friendDictionary[selectedSection]
+            guard let selectedFriend = friendDictionary[selectedSection] else {
+                debugPrint("No selected friend")
+                return
+            }
             let friendPhotoController = storyboard?.instantiateViewController(identifier: "PhotoGalleryStoryboardKey") as! FriendPhotoCollectionViewController
-            friendPhotoController.friend = selectedFriend![indexPath.row]
-            Session.instance.userId = Int64(selectedFriend![indexPath.row].id)
+            friendPhotoController.friend = selectedFriend[indexPath.row]
+            Session.instance.userId = Int64(selectedFriend[indexPath.row].id)
             self.show(friendPhotoController, sender: nil)
         }
     }
@@ -144,7 +149,8 @@ class MyFriendsTableViewController: UITableViewController {
     }
     
 }
-//MARK:- UISearch
+
+//MARK:- UISearch extensions
 
 extension MyFriendsTableViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {

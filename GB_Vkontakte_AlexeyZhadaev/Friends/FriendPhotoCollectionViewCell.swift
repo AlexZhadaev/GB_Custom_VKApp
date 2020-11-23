@@ -15,7 +15,11 @@ class FriendPhotoCollectionViewCell: UICollectionViewCell {
     
     func configure(for model: PhotoEntity) {
         likeCustomController.configure(for: model)
-        photo.load(url: URL(string: model.url)!)
+        guard let url = URL(string: model.url) else {
+            debugPrint("No url photo.url in FriendPhotoCollection")
+            return
+        }
+        photo.load(url: url)
     }
     
     override func prepareForReuse() {

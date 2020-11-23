@@ -12,14 +12,11 @@ class FriendPhotoCollectionViewController: UICollectionViewController {
     let saveService = CoreDataSaveService()
     let photoService = Photo()
     var photos = [PhotoEntity]()
-    var friend: UserEntity!
-    
-    var selectedIndexPath: IndexPath!
-    
+    var friend: UserEntity?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "\(friend.firstName ) \(friend.lastName )"
+        configure()
         photoService.getPhotoData(completion: {
             self.saveService.readPhotoList() { [unowned self] photos in
                 self.photos = photos
@@ -27,7 +24,6 @@ class FriendPhotoCollectionViewController: UICollectionViewController {
             }
         })
     }
-    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -52,11 +48,13 @@ class FriendPhotoCollectionViewController: UICollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let galleryViewController = storyboard?.instantiateViewController(identifier: "GalleryViewControllerKey") as! GalleryViewController
-        self.selectedIndexPath = indexPath
         galleryViewController.photos = self.photos
-        galleryViewController.currentIndex = self.selectedIndexPath.row
+        galleryViewController.currentIndex = indexPath.row
         galleryViewController.title = self.title
         self.show(galleryViewController, sender: nil)
     }
     
+    func configure() {
+        title = "\(friend?.firstName ?? "FirstName") \(friend?.lastName ?? "LastName")"
+    }
 }
