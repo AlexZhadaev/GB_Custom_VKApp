@@ -22,7 +22,6 @@ class LoginFormController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         authVk()
     }
     
@@ -65,15 +64,16 @@ extension LoginFormController: WKNavigationDelegate {
                 return dict
             }
         
-        let token = params["access_token"]
+        guard let token = params["access_token"] else {
+            debugPrint("No access token in LoginForm")
+            return
+        }
         Session.instance.token = token
-        
-        debugPrint("Token is:\(token ?? "")")
         
         decisionHandler(.cancel)
         
-        let vc = storyboard?.instantiateViewController(identifier: "TabBarStoryboardKey") as! UITabBarController
-        self.show(vc, sender: nil)
+        let tabBarController = storyboard?.instantiateViewController(identifier: "TabBarStoryboardKey") as! UITabBarController
+        self.show(tabBarController, sender: nil)
     }
 }
 

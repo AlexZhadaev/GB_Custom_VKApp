@@ -25,6 +25,10 @@ class MyGroupsTableViewCell: UITableViewCell {
     
     func configure(for model: GroupEntity) {
         groupName.text = model.name
-        imageGroup.load(url: URL(string: model.avatar)!)
+        guard let url = URL(string: model.avatar) else {
+            debugPrint("No url in MyGroups")
+            return
+        }
+        imageGroup.load(url: url)
     }
 }

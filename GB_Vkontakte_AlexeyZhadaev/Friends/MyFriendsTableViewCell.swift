@@ -21,8 +21,12 @@ class MyFriendsTableViewCell: UITableViewCell {
     }
     
     func configure(for model: UserEntity) {
-        friendName.text = "\(model.firstName ) \(model.lastName )"
-        customAvatarView.avatarImage.load(url: URL(string: model.avatar)!)
+        friendName.text = "\(model.firstName) \(model.lastName)"
+        guard let url = URL(string: model.avatar) else {
+            debugPrint("No url photo.url in FriendTableView")
+            return
+        }
+        customAvatarView.avatarImage.load(url: url)
         customAvatarView.configure()
     }
     
